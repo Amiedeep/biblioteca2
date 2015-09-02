@@ -1,0 +1,54 @@
+<?xml version = "1.0"?>
+<project name="biblioteca2" default="runjUnit" basedir=".">
+
+    <property name = "project.name" value="biblioteca2" />
+    <property name = "package.name" value="com.thoughtworks.biblioteca" />
+
+    <target name="build" depends="clean">
+        <mkdir dir="out"/>
+        <javac destdir="out">
+            <src path="src;test"/>
+            <classpath location="lib/junit-4.12.jar"/>
+            <classpath location="lib/hamcrest-core-1.3.jar"/>
+        </javac>
+    </target>
+
+
+    <target name="clean" description="clean previous output directory">
+        <delete dir="out"/>
+    </target>
+
+    <target name="build-jar" depends="build">
+        <jar destfile="lib/${project.name}.jar"
+             basedir="out"
+             excludes="**/Test.class">
+            <manifest>
+                <attribute name="Main-Class" value="${package.name}.Line"/>
+            </manifest>
+        </jar>
+    </target>
+
+    <target name="run" depends="build-jar">
+        <java fork="true" failonerror="yes" classname="${package.name}.Biblioteca">
+            <classpath>
+                <path location="lib/${project.name}.jar"/>
+            </classpath>
+        </java>
+    </target>
+
+    <target name="runjUnit" depends="build">
+        <junit printsummary="yes" haltonfailure="true">
+            <classpath>
+                <pathelement location="lib/junit-4.12.jar"/>
+                <pathelement location="lib/hamcrest-core-1.3.jar"/>
+                <pathelement location="out"/>
+            </classpath>
+            <batchtest fork="yes">
+                <fileset dir="test">
+                    <include name="**/*Test*.java"/>
+                </fileset>
+            </batchtest>
+        </junit>
+    </target>
+
+</project>
