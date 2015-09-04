@@ -1,5 +1,7 @@
 package com.thoughtworks.biblioteca;
 
+import java.util.List;
+
 public class BibliotecaApplication {
 
     public static void main(String[] args) {
@@ -13,5 +15,9 @@ public class BibliotecaApplication {
 
     public void printWelcomeMessage(String welcomeMessage) {
         System.out.println(welcomeMessage);
+    }
+
+    public void printBooks(List<String> books) {
+        System.out.println(books);
     }
 }
