@@ -1,3 +1,4 @@
+//This class starts the biblioteca application.
 package com.thoughtworks.biblioteca;
 
 import java.util.Arrays;

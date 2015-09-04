@@ -19,6 +19,6 @@ public class BibliotecaApplicationTest {
 
         bibliotecaApplication.start("welcome");
 
-        assertEquals("welcome\n[scjp, head first java]\n", outContent.toString());
+        assertEquals("welcome\nList of books we have is: \n[scjp, head first java]\n", outContent.toString());
     }
 }
