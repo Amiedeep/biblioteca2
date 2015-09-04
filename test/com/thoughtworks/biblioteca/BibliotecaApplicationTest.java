@@ -6,6 +6,9 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 public class BibliotecaApplicationTest {
 
@@ -20,5 +23,14 @@ public class BibliotecaApplicationTest {
         bibliotecaApplication.printWelcomeMessage("welcome");
 
         assertEquals("welcome\n", outContent.toString());
+    }
+
+    @Test
+    public void shouldCallPrintWelcomeMessageWhenICallStart() {
+        bibliotecaApplication = spy(new BibliotecaApplication());
+
+        bibliotecaApplication.start();
+
+        verify(bibliotecaApplication, times(1)).printWelcomeMessage("Hey! Welcome to biblioteca");
     }
 }
