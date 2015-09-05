@@ -1,8 +1,13 @@
 <?xml version = "1.0"?>
-<project name="biblioteca2" default="runjUnit" basedir=".">
+<project name="biblioteca2" default="report" basedir="." xmlns:jacoco="antlib:org.jacoco.ant">
 
     <property name = "project.name" value="biblioteca2" />
     <property name = "package.name" value="com.thoughtworks.biblioteca" />
+
+    <taskdef uri="antlib:org.jacoco.ant" resource="org/jacoco/ant/antlib.xml">
+        <classpath path="lib/jacocoant.jar"/>
+    </taskdef>
+
 
     <target name="build" depends="clean">
         <mkdir dir="out"/>
@@ -38,19 +43,38 @@
     </target>
 
     <target name="runjUnit" depends="build">
-        <junit printsummary="yes" haltonfailure="true">
-            <classpath>
-                <pathelement location="lib/junit-4.12.jar"/>
-                <pathelement location="lib/hamcrest-core-1.3.jar"/>
-                <pathelement location="lib/mockito-all-1.9.5.jar"/>
-                <pathelement location="out"/>
-            </classpath>
-            <batchtest fork="yes">
-                <fileset dir="test">
-                    <include name="**/*Test*.java"/>
-                </fileset>
-            </batchtest>
-        </junit>
+        <jacoco:coverage destfile="./out/jacoco.exec">
+            <junit printsummary="yes" haltonfailure="true" fork="true" forkmode="once" >
+                <classpath>
+                    <pathelement location="lib/junit-4.12.jar"/>
+                    <pathelement location="lib/hamcrest-core-1.3.jar"/>
+                    <pathelement location="lib/mockito-all-1.9.5.jar"/>
+                    <pathelement location="out"/>
+                </classpath>
+                <batchtest fork="yes">
+                    <fileset dir="test">
+                        <include name="**/*Test*.java"/>
+                    </fileset>
+                </batchtest>
+            </junit>
+        </jacoco:coverage>
+    </target>
+
+    <target name="report" depends="runjUnit">
+        <jacoco:report>
+            <executiondata>
+                <file file="out/jacoco.exec"/>
+            </executiondata>
+            <structure name="Biblioteca">
+                <classfiles>
+                    <fileset dir="out"/>
+                </classfiles>
+                <sourcefiles encoding="UTF-8">
+                    <fileset dir="src"/>
+                </sourcefiles>
+            </structure>
+            <html destdir="out" />
+        </jacoco:report>
     </target>
 
 </project>
