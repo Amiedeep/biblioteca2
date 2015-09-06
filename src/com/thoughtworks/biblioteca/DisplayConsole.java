@@ -1,3 +1,4 @@
+//This class takes a message and displays that message.
 package com.thoughtworks.biblioteca;
 
 public class DisplayConsole {
