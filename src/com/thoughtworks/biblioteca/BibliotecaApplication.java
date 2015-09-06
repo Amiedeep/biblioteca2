@@ -6,7 +6,7 @@ import java.util.List;
 
 public class BibliotecaApplication {
 
-    private final List<String> listOfBooks = Arrays.asList("scjp", "head first java");
+    private final List<Book> listOfBooks = Arrays.asList(new Book("scjp", "kathy sierra", 1990), new Book("head first java", "someone", 2014));
     private DisplayConsole displayConsole;
 
     public static void main(String[] args) {
@@ -16,7 +16,7 @@ public class BibliotecaApplication {
 
     public void start(String welcomeMessage) {
         printWelcomeMessage(welcomeMessage);
-        printBooks(listOfBooks);
+        printBooks();
     }
 
     private void printWelcomeMessage(String welcomeMessage) {
@@ -24,8 +24,12 @@ public class BibliotecaApplication {
         displayConsole.display();
     }
 
-    private void printBooks(List<String> books) {
-        displayConsole = new DisplayConsole("List of books we have is: \n"+books);
+    private void printBooks() {
+        String bookList = "List of books we have is: \n";
+        for(Book book : listOfBooks) {
+            bookList += book.toString();
+        }
+        displayConsole = new DisplayConsole(bookList);
         displayConsole.display();
     }
 }

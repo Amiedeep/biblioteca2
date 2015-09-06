@@ -19,6 +19,10 @@ public class BibliotecaApplicationTest {
 
         bibliotecaApplication.start("welcome");
 
-        assertEquals("welcome\nList of books we have is: \n[scjp, head first java]\n", outContent.toString());
+        assertEquals("welcome\n" +
+                     "List of books we have is: \n" +
+                     "scjp                                     kathy sierra                             1990                                    \n" +
+                     "head first java                          someone                                  2014                                    \n\n",
+                     outContent.toString());
     }
 }
