@@ -3,39 +3,32 @@ package com.thoughtworks.biblioteca;
 
 public class BibliotecaApplication {
 
-    private DisplayConsole displayConsole;
-    private Options menuOptions;
+    private View welcomeView;
+    private View displayView;
 
-    public BibliotecaApplication(Options menuOptions) {
-        this.menuOptions = menuOptions;
+    public BibliotecaApplication(View welcomeView, View displayView) {
+        this.welcomeView = welcomeView;
+        this.displayView = displayView;
     }
 
     public static void main(String[] args) {
-        BibliotecaApplication bibliotecaApplication = new BibliotecaApplication(new Options());
-        bibliotecaApplication.start("Hey! Welcome to biblioteca");
+        Options options = new Options();
+        String welcomeMessage = "Hey! Welcome to biblioteca";
+        BibliotecaApplication bibliotecaApplication = new BibliotecaApplication(new View(welcomeMessage),
+                                                                                new View(options.getOptions()));
+        bibliotecaApplication.start();
     }
 
-    public void start(String welcomeMessage) {
-        displayConsole = new DisplayConsole(welcomeMessage);
-        printWelcomeMessage(displayConsole);
-        getAndPrintMenuOption();
+    public void start() {
+        printWelcomeMessage();
+        printMenuOptions();
     }
 
-    public void getAndPrintMenuOption() {
-        String options = getMenuOptions();
-        displayConsole = new DisplayConsole(options);
-        printMenuOptions(displayConsole);
+    private void printMenuOptions() {
+        displayView.display();
     }
 
-    public void printMenuOptions(DisplayConsole displayConsole) {
-        displayConsole.display();
-    }
-
-    public String getMenuOptions() {
-        return menuOptions.getOptions();
-    }
-
-    public void printWelcomeMessage(DisplayConsole displayConsole) {
-        displayConsole.display();
+    private void printWelcomeMessage() {
+        welcomeView.display();
     }
 }
