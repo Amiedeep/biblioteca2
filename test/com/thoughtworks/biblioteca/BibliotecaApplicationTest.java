@@ -1,10 +1,11 @@
 package com.thoughtworks.biblioteca;
 
 import org.junit.Test;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
+import static junit.framework.TestCase.assertEquals;
+import static org.mockito.Mockito.*;
 
 public class BibliotecaApplicationTest {
 
@@ -41,5 +42,19 @@ public class BibliotecaApplicationTest {
         bibliotecaApplication.printMenuOptions(displayConsole);
 
         verify(displayConsole, times(1)).display();
+    }
+
+    @Test
+    public void shouldGetMenuOptionsAndPrintThemWhenICallGetAndPrintMenuOption() {
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputStream));
+        menuOptions = mock(Options.class);
+        bibliotecaApplication = new BibliotecaApplication(menuOptions);
+
+        when(menuOptions.getOptions()).thenReturn("Options");
+
+        bibliotecaApplication.getAndPrintMenuOption();
+
+        assertEquals("Options\n", outputStream.toString());
     }
 }

@@ -18,6 +18,10 @@ public class BibliotecaApplication {
     public void start(String welcomeMessage) {
         displayConsole = new DisplayConsole(welcomeMessage);
         printWelcomeMessage(displayConsole);
+        getAndPrintMenuOption();
+    }
+
+    public void getAndPrintMenuOption() {
         String options = getMenuOptions();
         displayConsole = new DisplayConsole(options);
         printMenuOptions(displayConsole);
