@@ -1,3 +1,4 @@
+//This class takes an input from the user on console
 package com.thoughtworks.biblioteca;
 
 import java.util.Scanner;
