@@ -9,14 +9,26 @@ import static org.mockito.Mockito.verify;
 public class BibliotecaApplicationTest {
 
     private BibliotecaApplication bibliotecaApplication;
+    private Options menuOptions;
 
     @Test
     public void shouldCallDisplayMethodOfDisplayConsoleWhenICallPrintWelcomeMessage() {
-        bibliotecaApplication = new BibliotecaApplication();
+        menuOptions = new Options();
+        bibliotecaApplication = new BibliotecaApplication(menuOptions);
         DisplayConsole displayConsole = mock(DisplayConsole.class);
 
         bibliotecaApplication.printWelcomeMessage(displayConsole);
 
         verify(displayConsole, times(1)).display();
+    }
+
+    @Test
+    public void shouldReturnMeMenuOptionsWhenICallGetMenuOptions() {
+        menuOptions = mock(Options.class);
+        bibliotecaApplication = new BibliotecaApplication(menuOptions);
+
+        bibliotecaApplication.getMenuOptions();
+
+        verify(menuOptions, times(1)).getOptions();
     }
 }

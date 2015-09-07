@@ -4,15 +4,24 @@ package com.thoughtworks.biblioteca;
 public class BibliotecaApplication {
 
     private DisplayConsole displayConsole;
+    private Options menuOptions;
+
+    public BibliotecaApplication(Options menuOptions) {
+        this.menuOptions = menuOptions;
+    }
 
     public static void main(String[] args) {
-        BibliotecaApplication bibliotecaApplication = new BibliotecaApplication();
+        BibliotecaApplication bibliotecaApplication = new BibliotecaApplication(new Options());
         bibliotecaApplication.start("Hey! Welcome to biblioteca");
     }
 
     public void start(String welcomeMessage) {
         displayConsole = new DisplayConsole(welcomeMessage);
         printWelcomeMessage(displayConsole);
+    }
+
+    public String getMenuOptions() {
+        return menuOptions.getOptions();
     }
 
     public void printWelcomeMessage(DisplayConsole displayConsole) {
