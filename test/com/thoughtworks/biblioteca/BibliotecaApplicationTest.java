@@ -1,8 +1,11 @@
 package com.thoughtworks.biblioteca;
 
 import org.junit.Test;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.util.Scanner;
 
+import static junit.framework.TestCase.assertEquals;
 import static org.mockito.Mockito.*;
 
 public class BibliotecaApplicationTest {
@@ -51,6 +54,41 @@ public class BibliotecaApplicationTest {
 
         bibliotecaApplication.takeUserInput();
 
+        verify(bookView, times(1)).display();
+        verify(consoleInput, times(2)).getInput();
+    }
+
+    @Test
+    public void shouldPrintMeInvaliMessageWhenIChooseInvalidOptionInTakeUserInputMethod() {
+        welcomeView = new View("Welcome view");
+        bookView = new View("Book view");
+        displayView = new View("Display view");
+        consoleInput = mock(ConsoleInput.class);
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputStream));
+        bibliotecaApplication = new BibliotecaApplication(welcomeView, displayView, bookView, consoleInput);
+
+        when(consoleInput.getInput()).thenReturn("3", "2");
+
+        bibliotecaApplication.takeUserInput();
+
+        assertEquals("Select a valid option!\n", outputStream.toString());
+    }
+
+    @Test
+    public void shouldCallProperMethodsAndDisplayDataWhenICallStartMEthod() {
+        welcomeView = mock(View.class);
+        bookView = mock(View.class);
+        displayView = mock(View.class);
+        consoleInput = mock(ConsoleInput.class);;
+        bibliotecaApplication = new BibliotecaApplication(welcomeView, displayView, bookView, consoleInput);
+
+        when(consoleInput.getInput()).thenReturn("1", "2");
+
+        bibliotecaApplication.start();
+
+        verify(displayView, times(1)).display();
+        verify(welcomeView, times(1)).display();
         verify(bookView, times(1)).display();
         verify(consoleInput, times(2)).getInput();
     }
