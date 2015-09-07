@@ -1,9 +1,10 @@
+//Library contains books
 package com.thoughtworks.biblioteca;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class BookList {
+public class Library {
 
     private final List<Book> listOfBooks = Arrays.asList(new Book("scjp", "kathy sierra", 1990),
                                                          new Book("head first java", "someone", 2014));

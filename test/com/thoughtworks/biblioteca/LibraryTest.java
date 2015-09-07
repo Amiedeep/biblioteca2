@@ -4,17 +4,17 @@ import org.junit.Test;
 
 import static junit.framework.TestCase.assertEquals;
 
-public class BookListTest {
+public class LibraryTest {
 
-    private BookList bookList;
+    private Library library;
 
     @Test
     public void shouldShowListOfBooksInFormattedOrder() {
-        bookList = new BookList();
+        library = new Library();
 
         String expected ="List of books we have is: \n" +
                 "scjp                                     kathy sierra                             1990                                    \n"+
                 "head first java                          someone                                  2014                                    \n";
-        assertEquals(expected, bookList.listBooks());
+        assertEquals(expected, library.listBooks());
     }
 }
