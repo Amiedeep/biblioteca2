@@ -31,4 +31,15 @@ public class BibliotecaApplicationTest {
 
         verify(menuOptions, times(1)).getOptions();
     }
+
+    @Test
+    public void shouldPrintMenuOptionsWhenICallPrintMenuOptionsMethod() {
+        menuOptions = new Options();
+        bibliotecaApplication = new BibliotecaApplication(menuOptions);
+        DisplayConsole displayConsole = mock(DisplayConsole.class);
+
+        bibliotecaApplication.printMenuOptions(displayConsole);
+
+        verify(displayConsole, times(1)).display();
+    }
 }
