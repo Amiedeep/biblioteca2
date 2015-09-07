@@ -12,7 +12,7 @@ public class DisplayConsoleTest {
     private DisplayConsole displayConsole;
 
     @Test
-    public void shouldDisplayTheMessageGivenToTheConstructorWhenICallDisplayBookMethod() {
+    public void shouldDisplayTheMessageGivenToTheConstructorWhenICallDisplayMethod() {
         displayConsole = new DisplayConsole("some    thing");
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStream));
