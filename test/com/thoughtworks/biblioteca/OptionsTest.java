@@ -12,6 +12,6 @@ public class OptionsTest {
     public void shouldReturnOptionsWhenICallgetOptionsMethod() {
         options = new Options();
 
-        assertEquals("Please choose one option: \n1: List Books\n", options.getOptions());
+        assertEquals("Please choose one option: \n1: List Books\n2: Quit\n", options.getOptions());
     }
 }
