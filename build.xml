@@ -29,13 +29,13 @@
              basedir="out"
              excludes="**/Test.class">
             <manifest>
-                <attribute name="Main-Class" value="${package.name}.Line"/>
+                <attribute name="Main-Class" value="${package.name}.BibliotecaApplication"/>
             </manifest>
         </jar>
     </target>
 
     <target name="run" depends="build-jar">
-        <java fork="true" failonerror="yes" classname="${package.name}.Biblioteca">
+        <java fork="true" failonerror="yes" classname="${package.name}.BibliotecaApplication">
             <classpath>
                 <path location="lib/${project.name}.jar"/>
             </classpath>
