@@ -2,27 +2,21 @@ package com.thoughtworks.biblioteca;
 
 import org.junit.Test;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
-
-import static org.junit.Assert.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 public class BibliotecaApplicationTest {
 
     private BibliotecaApplication bibliotecaApplication;
 
     @Test
-    public void shouldPrintWelcomeMessageOnTheScreenAndTheListOfBooks() {
+    public void shouldCallDisplayMethodOfDisplayConsoleWhenICallPrintWelcomeMessage() {
         bibliotecaApplication = new BibliotecaApplication();
-        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outContent));
+        DisplayConsole displayConsole = mock(DisplayConsole.class);
 
-        bibliotecaApplication.start("welcome");
+        bibliotecaApplication.printWelcomeMessage(displayConsole);
 
-        assertEquals("welcome\n" +
-                     "List of books we have is: \n" +
-                     "scjp                                     kathy sierra                             1990                                    \n" +
-                     "head first java                          someone                                  2014                                    \n\n",
-                     outContent.toString());
+        verify(displayConsole, times(1)).display();
     }
 }
