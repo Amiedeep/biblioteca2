@@ -34,15 +34,17 @@ public class BibliotecaApplication {
         takeUserInput();
     }
 
-    private void takeUserInput() {
+    public void takeUserInput() {
         int option;
         View invalidOption = new View("Select a valid option!");
-        while(true) {
+    outer : while(true) {
             option = Integer.parseInt(consoleInput.getInput());
             switch(option) {
                 case 1:
                     bookView.display();
                     break;
+                case 2:
+                    break outer;
                 default:
                     invalidOption.display();
             }

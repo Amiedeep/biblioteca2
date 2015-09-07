@@ -38,4 +38,20 @@ public class BibliotecaApplicationTest {
 
         verify(welcomeView, times(1)).display();
     }
+
+    @Test
+    public void shouldReturnMeProperDisplayWhenIChooseOptionInTakeUserInputMethod() {
+        welcomeView = new View("Welcome view");
+        bookView = mock(View.class);
+        displayView = new View("Display view");
+        consoleInput = mock(ConsoleInput.class);
+        bibliotecaApplication = new BibliotecaApplication(welcomeView, displayView, bookView, consoleInput);
+
+        when(consoleInput.getInput()).thenReturn("1","2");
+
+        bibliotecaApplication.takeUserInput();
+
+        verify(bookView, times(1)).display();
+        verify(consoleInput, times(2)).getInput();
+    }
 }
