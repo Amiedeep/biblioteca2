@@ -17,4 +17,8 @@ public class Book {
     public String toString() {
         return String.format("%-40s %-40s %-40s\n", name, author, yearPublished);
     }
+
+    public boolean compareBookNameWith(String thatName) {
+        return false;
+    }
 }

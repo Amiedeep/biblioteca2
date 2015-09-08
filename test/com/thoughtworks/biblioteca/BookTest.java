@@ -15,4 +15,11 @@ public class BookTest {
         assertEquals("harry potter                             someone really good                      2010                                    \n",
                      book.toString());
     }
+
+    @Test
+    public void shouldReturnMeFalseifIPassNullAsParameterInCompareBookNameWithMethod() {
+        book = new Book("harry potter", "someone really good", 2010);
+
+        assertEquals(false, book.compareBookNameWith(null));
+    }
 }
