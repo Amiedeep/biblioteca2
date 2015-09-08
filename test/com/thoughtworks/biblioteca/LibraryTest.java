@@ -31,4 +31,11 @@ public class LibraryTest {
 
         assertEquals(false, library.checkOutBook("some non-existing book"));
     }
+
+    @Test
+    public void shouldReturnMeTrueWhenIPassExistingBookNameToCheckOutBookMethod() {
+        library = new Library();
+
+        assertEquals(true, library.checkOutBook("scjp"));
+    }
 }

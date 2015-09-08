@@ -7,8 +7,8 @@ import java.util.List;
 
 public class Library {
 
-    private List<Book> listOfBooks = Arrays.asList(new Book("scjp", "kathy sierra", 1990),
-                                                         new Book("head first java", "someone", 2014));
+    private List<Book> listOfBooks = new ArrayList<>(Arrays.asList(new Book("scjp", "kathy sierra", 1990),
+                                                         new Book("head first java", "someone", 2014)));
     private List<Book> checkedOutBooks = new ArrayList<>();
 
     public String listBooks() {
@@ -20,6 +20,12 @@ public class Library {
     }
 
     public boolean checkOutBook(String bookName) {
+        for(Book book : listOfBooks) {
+            if(book.compareBookNameWith(bookName)) {
+                checkOutBook(book);
+                return true;
+            }
+        }
         return false;
     }
 
