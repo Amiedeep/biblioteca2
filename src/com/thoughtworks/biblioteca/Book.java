@@ -19,6 +19,6 @@ public class Book {
     }
 
     public boolean compareBookNameWith(String thatName) {
-        return false;
+        return name.equals(thatName);
     }
 }

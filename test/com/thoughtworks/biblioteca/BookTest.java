@@ -29,4 +29,11 @@ public class BookTest {
 
         assertEquals(false, book.compareBookNameWith("Some non existing book"));
     }
+
+    @Test
+    public void shouldReturnMeTrueIfIPassSameBookNameAsParameterInCompareBookNameWithMethod() {
+        book = new Book("harry potter", "someone really good", 2010);
+
+        assertEquals(true, book.compareBookNameWith("harry potter"));
+    }
 }
