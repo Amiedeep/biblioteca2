@@ -17,4 +17,11 @@ public class LibraryTest {
                 "head first java                          someone                                  2014                                    \n";
         assertEquals(expected, library.listBooks());
     }
+
+    @Test
+    public void shouldReturnMeFalseWhenIPassNullToCheckOutBookMethod() {
+        library = new Library();
+
+        assertEquals(false, library.checkOutBook(null));
+    }
 }
