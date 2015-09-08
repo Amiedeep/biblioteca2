@@ -7,12 +7,12 @@ public class BibliotecaApplication {
 
     private View welcomeView;
     private View bookView;
-    private View displayView;
+    private View optionsView;
     private ConsoleInput consoleInput;
 
-    public BibliotecaApplication(View welcomeView, View displayView,View bookView, ConsoleInput consoleInput) {
+    public BibliotecaApplication(View welcomeView, View optionsView,View bookView, ConsoleInput consoleInput) {
         this.welcomeView = welcomeView;
-        this.displayView = displayView;
+        this.optionsView = optionsView;
         this.bookView = bookView;
         this.consoleInput = consoleInput;
     }
@@ -52,7 +52,7 @@ public class BibliotecaApplication {
     }
 
     public void printMenuOptions() {
-        displayView.display();
+        optionsView.display();
     }
 
     public void printWelcomeMessage() {

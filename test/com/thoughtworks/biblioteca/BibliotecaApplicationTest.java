@@ -12,7 +12,7 @@ public class BibliotecaApplicationTest {
 
     private BibliotecaApplication bibliotecaApplication;
     private View welcomeView;
-    private View displayView;
+    private View optionView;
     private View bookView;
     private ConsoleInput consoleInput;
 
@@ -20,22 +20,22 @@ public class BibliotecaApplicationTest {
     public void shouldCallDisplayMethodOfDisplayViewWhenICallPrintMenuOptions() {
         welcomeView = new View("welcome view");
         bookView = new View("book view");
-        displayView = mock(View.class);
+        optionView = mock(View.class);
         consoleInput = new ConsoleInput(new Scanner(System.in));
-        bibliotecaApplication = new BibliotecaApplication(welcomeView, displayView, bookView, consoleInput);
+        bibliotecaApplication = new BibliotecaApplication(welcomeView, optionView, bookView, consoleInput);
 
         bibliotecaApplication.printMenuOptions();
 
-        verify(displayView, times(1)).display();
+        verify(optionView, times(1)).display();
     }
 
     @Test
     public void shouldCallDisplayMethodOfWelcomeViewWhenICallPrintWelcomeMessage() {
         welcomeView = mock(View.class);
         bookView = new View("book view");
-        displayView = new View("Display view");
+        optionView = new View("Display view");
         consoleInput = new ConsoleInput(new Scanner(System.in));
-        bibliotecaApplication = new BibliotecaApplication(welcomeView, displayView, bookView, consoleInput);
+        bibliotecaApplication = new BibliotecaApplication(welcomeView, optionView, bookView, consoleInput);
 
         bibliotecaApplication.printWelcomeMessage();
 
@@ -46,9 +46,9 @@ public class BibliotecaApplicationTest {
     public void shouldReturnMeProperDisplayWhenIChooseOptionInTakeUserInputMethod() {
         welcomeView = new View("Welcome view");
         bookView = mock(View.class);
-        displayView = new View("Display view");
+        optionView = new View("Display view");
         consoleInput = mock(ConsoleInput.class);
-        bibliotecaApplication = new BibliotecaApplication(welcomeView, displayView, bookView, consoleInput);
+        bibliotecaApplication = new BibliotecaApplication(welcomeView, optionView, bookView, consoleInput);
 
         when(consoleInput.getInput()).thenReturn("1","2");
 
@@ -62,11 +62,11 @@ public class BibliotecaApplicationTest {
     public void shouldPrintMeInvaliMessageWhenIChooseInvalidOptionInTakeUserInputMethod() {
         welcomeView = new View("Welcome view");
         bookView = new View("Book view");
-        displayView = new View("Display view");
+        optionView = new View("Display view");
         consoleInput = mock(ConsoleInput.class);
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStream));
-        bibliotecaApplication = new BibliotecaApplication(welcomeView, displayView, bookView, consoleInput);
+        bibliotecaApplication = new BibliotecaApplication(welcomeView, optionView, bookView, consoleInput);
 
         when(consoleInput.getInput()).thenReturn("3", "2");
 
@@ -79,15 +79,15 @@ public class BibliotecaApplicationTest {
     public void shouldCallProperMethodsAndDisplayDataWhenICallStartMEthod() {
         welcomeView = mock(View.class);
         bookView = mock(View.class);
-        displayView = mock(View.class);
+        optionView = mock(View.class);
         consoleInput = mock(ConsoleInput.class);;
-        bibliotecaApplication = new BibliotecaApplication(welcomeView, displayView, bookView, consoleInput);
+        bibliotecaApplication = new BibliotecaApplication(welcomeView, optionView, bookView, consoleInput);
 
         when(consoleInput.getInput()).thenReturn("1", "2");
 
         bibliotecaApplication.start();
 
-        verify(displayView, times(1)).display();
+        verify(optionView, times(1)).display();
         verify(welcomeView, times(1)).display();
         verify(bookView, times(1)).display();
         verify(consoleInput, times(2)).getInput();
