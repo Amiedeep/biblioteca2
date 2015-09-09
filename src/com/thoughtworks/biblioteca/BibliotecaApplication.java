@@ -6,48 +6,40 @@ import java.util.Scanner;
 public class BibliotecaApplication {
 
     private View welcomeView;
-    private View bookView;
     private View optionsView;
     private ConsoleInput consoleInput;
+    private Interpreter interpreter;
 
-    public BibliotecaApplication(View welcomeView, View optionsView,View bookView, ConsoleInput consoleInput) {
+    public BibliotecaApplication(View welcomeView, View optionsView, ConsoleInput consoleInput, Interpreter interpreter) {
         this.welcomeView = welcomeView;
         this.optionsView = optionsView;
-        this.bookView = bookView;
         this.consoleInput = consoleInput;
+        this.interpreter = interpreter;
     }
 
     public static void main(String[] args) {
         Options options = new Options();
         String welcomeMessage = "Hey! Welcome to biblioteca";
         Library library = new Library();
+        ConsoleInput consoleInput = new ConsoleInput(new Scanner(System.in));
         BibliotecaApplication bibliotecaApplication = new BibliotecaApplication(new View(welcomeMessage),
                                                                                 new View(options.getOptions()),
-                                                                                new View(library.listBooks()),
-                                                                                new ConsoleInput(new Scanner(System.in)));
+                                                                                consoleInput,
+                                                                                new Interpreter(library, consoleInput));
         bibliotecaApplication.start();
     }
 
     public void start() {
         printWelcomeMessage();
         printMenuOptions();
-        takeUserInput();
+        takeUserInputAndInterpret();
     }
 
-    public void takeUserInput() {
-        int option;
-        View invalidOption = new View("Select a valid option!");
-    outer : while(true) {
-            option = Integer.parseInt(consoleInput.getInput());
-            switch(option) {
-                case 1:
-                    bookView.display();
-                    break;
-                case 2:
-                    break outer;
-                default:
-                    invalidOption.display();
-            }
+    public void takeUserInputAndInterpret() {
+        while(true) {
+            String option = consoleInput.getInput();
+            interpreter.interpret(option);
+            printMenuOptions();
         }
     }
 
