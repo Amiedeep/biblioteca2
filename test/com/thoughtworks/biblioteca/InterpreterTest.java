@@ -47,7 +47,7 @@ public class InterpreterTest {
 
         interpreter.interpret("2");
 
-        assertEquals("Enter book name to display\n", outputStream.toString());
+        assertEquals("Enter book name to checkout\n", outputStream.toString());
 
         verify(consoleInput, times(1)).getInput();
         verify(library, times(1)).checkOutBook("some book");
@@ -78,5 +78,19 @@ public class InterpreterTest {
         exit.expectSystemExitWithStatus(0);
 
         interpreter.interpret("3");
+    }
+
+    @Test
+    public void shouldCallTheReturnBookMethodOfLibraryWhenIPassFourInInterpretMethod() {
+        interpreter = new Interpreter(library, consoleInput);
+
+        when(consoleInput.getInput()).thenReturn("some book");
+
+        interpreter.interpret("4");
+
+        assertEquals("Enter book name to return\n", outputStream.toString());
+
+        verify(consoleInput, times(1)).getInput();
+        verify(library, times(1)).returnBook("some book");
     }
 }
