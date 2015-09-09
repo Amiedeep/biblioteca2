@@ -26,7 +26,7 @@ public class Library {
                 return "Thank You! Enjoy the book";
             }
         }
-        return "";
+        return "That book is not available";
     }
 
     private void checkOutBook(Book book) {

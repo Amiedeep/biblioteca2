@@ -22,14 +22,14 @@ public class LibraryTest {
     public void shouldReturnMeFalseWhenIPassNullToCheckOutBookMethod() {
         library = new Library();
 
-        assertEquals("", library.checkOutBook(null));
+        assertEquals("That book is not available", library.checkOutBook(null));
     }
 
     @Test
     public void shouldReturnMeFalseWhenIPassSomeOtherBookNameToCheckOutBookMethod() {
         library = new Library();
 
-        assertEquals("", library.checkOutBook("some non-existing book"));
+        assertEquals("That book is not available", library.checkOutBook("some non-existing book"));
     }
 
     @Test
