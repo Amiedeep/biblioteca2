@@ -5,14 +5,14 @@ import java.util.Scanner;
 
 public class BibliotecaApplication {
 
-    private View welcomeView;
-    private View optionsView;
+    private Display welcomeDisplay;
+    private Display optionsDisplay;
     private ConsoleInput consoleInput;
     private Interpreter interpreter;
 
-    public BibliotecaApplication(View welcomeView, View optionsView, ConsoleInput consoleInput, Interpreter interpreter) {
-        this.welcomeView = welcomeView;
-        this.optionsView = optionsView;
+    public BibliotecaApplication(Display welcomeDisplay, Display optionsDisplay, ConsoleInput consoleInput, Interpreter interpreter) {
+        this.welcomeDisplay = welcomeDisplay;
+        this.optionsDisplay = optionsDisplay;
         this.consoleInput = consoleInput;
         this.interpreter = interpreter;
     }
@@ -22,8 +22,8 @@ public class BibliotecaApplication {
         String welcomeMessage = "Hey! Welcome to biblioteca";
         Library library = new Library();
         ConsoleInput consoleInput = new ConsoleInput(new Scanner(System.in));
-        BibliotecaApplication bibliotecaApplication = new BibliotecaApplication(new View(welcomeMessage),
-                                                                                new View(options.getOptions()),
+        BibliotecaApplication bibliotecaApplication = new BibliotecaApplication(new Display(welcomeMessage),
+                                                                                new Display(options.getOptions()),
                                                                                 consoleInput,
                                                                                 new Interpreter(library, consoleInput));
         bibliotecaApplication.start();
@@ -44,10 +44,10 @@ public class BibliotecaApplication {
     }
 
     public void printMenuOptions() {
-        optionsView.display();
+        optionsDisplay.display();
     }
 
     public void printWelcomeMessage() {
-        welcomeView.display();
+        welcomeDisplay.display();
     }
 }

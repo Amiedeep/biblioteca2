@@ -12,8 +12,8 @@ import static org.mockito.Mockito.*;
 public class BibliotecaApplicationTest {
 
     private BibliotecaApplication bibliotecaApplication;
-    private View welcomeView;
-    private View optionView;
+    private Display welcomeDisplay;
+    private Display optionDisplay;
     private ConsoleInput consoleInput;
     private Interpreter interpreter;
 
@@ -22,36 +22,36 @@ public class BibliotecaApplicationTest {
 
     @Before
     public void setUp() {
-        welcomeView = new View("welcome view");
-        optionView = new View("Display view");
+        welcomeDisplay = new Display("welcome display");
+        optionDisplay = new Display("Display display");
         consoleInput = new ConsoleInput(new Scanner(System.in));
         interpreter = new Interpreter(new Library(), consoleInput);
     }
 
     @Test
-    public void shouldCallDisplayMethodOfDisplayViewWhenICallPrintMenuOptions() {
-        optionView = mock(View.class);
-        bibliotecaApplication = new BibliotecaApplication(welcomeView, optionView, consoleInput, interpreter);
+    public void shouldCallDisplayMethodOfOptionsDisplayObjectWhenICallPrintMenuOptions() {
+        optionDisplay = mock(Display.class);
+        bibliotecaApplication = new BibliotecaApplication(welcomeDisplay, optionDisplay, consoleInput, interpreter);
 
         bibliotecaApplication.printMenuOptions();
 
-        verify(optionView, times(1)).display();
+        verify(optionDisplay, times(1)).display();
     }
 
     @Test
-    public void shouldCallDisplayMethodOfWelcomeViewWhenICallPrintWelcomeMessage() {
-        welcomeView = mock(View.class);
-        bibliotecaApplication = new BibliotecaApplication(welcomeView, optionView, consoleInput, interpreter);
+    public void shouldCallDisplayMethodOfWelcomeDisplayObjectWhenICallPrintWelcomeMessage() {
+        welcomeDisplay = mock(Display.class);
+        bibliotecaApplication = new BibliotecaApplication(welcomeDisplay, optionDisplay, consoleInput, interpreter);
 
         bibliotecaApplication.printWelcomeMessage();
 
-        verify(welcomeView, times(1)).display();
+        verify(welcomeDisplay, times(1)).display();
     }
 
     @Test
     public void shouldTakeTheUserInputAndPerformOperationWhenICallTakeUserInputAndInterpretMethod() {
         consoleInput = mock(ConsoleInput.class);
-        bibliotecaApplication = new BibliotecaApplication(welcomeView, optionView, consoleInput, interpreter);
+        bibliotecaApplication = new BibliotecaApplication(welcomeDisplay, optionDisplay, consoleInput, interpreter);
 
         when(consoleInput.getInput()).thenReturn("1", "3");
 
@@ -63,7 +63,7 @@ public class BibliotecaApplicationTest {
     @Test
     public void shouldVerifyIfAllMethodsAreCalledWhenICallStartMethod() {
         consoleInput = mock(ConsoleInput.class);
-        bibliotecaApplication = new BibliotecaApplication(welcomeView, optionView, consoleInput, interpreter);
+        bibliotecaApplication = new BibliotecaApplication(welcomeDisplay, optionDisplay, consoleInput, interpreter);
 
         when(consoleInput.getInput()).thenReturn("3");
 

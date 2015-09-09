@@ -7,17 +7,17 @@ import java.io.PrintStream;
 
 import static junit.framework.TestCase.assertEquals;
 
-public class ViewTest {
+public class DisplayTest {
 
-    private View view;
+    private Display display;
 
     @Test
     public void shouldDisplayTheMessageGivenToTheConstructorWhenICallDisplayMethod() {
-        view = new View("some    thing");
+        display = new Display("some    thing");
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStream));
 
-        view.display();
+        display.display();
 
         assertEquals("some    thing\n", outputStream.toString());
     }

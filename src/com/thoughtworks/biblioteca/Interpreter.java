@@ -1,4 +1,4 @@
-//It takes the input, Interpret it and return the view.
+//It takes the input, Interpret it and return the display.
 package com.thoughtworks.biblioteca;
 
 public class Interpreter {
@@ -12,27 +12,27 @@ public class Interpreter {
     }
 
     public void interpret(String input) {
-        View invalidOption = new View("Select a valid option!");
+        Display invalidOption = new Display("Select a valid option!");
         try {
             int option = Integer.parseInt(input);
-            String bookName = "";
+            String bookName;
             String returnMessage;
             switch (option) {
                 case 1:
                     String bookList = library.listBooks();
-                    new View(bookList).display();
+                    new Display(bookList).display();
                     break;
                 case 2:
-                    new View("Enter book name to checkout").display();
+                    new Display("Enter book name to checkout").display();
                     bookName = consoleInput.getInput();
                     returnMessage = library.checkOutBook(bookName);
-                    new View(returnMessage).display();
+                    new Display(returnMessage).display();
                     break;
                 case 3:
                     System.exit(0);
                     break;
                 case 4:
-                    new View("Enter book name to return").display();
+                    new Display("Enter book name to return").display();
                     bookName = consoleInput.getInput();
                     library.returnBook(bookName);
                     break;

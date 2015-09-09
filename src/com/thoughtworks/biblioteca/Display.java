@@ -1,11 +1,11 @@
 //This class takes a message and displays that message.
 package com.thoughtworks.biblioteca;
 
-public class View {
+public class Display {
 
     private String message;
 
-    public View(String message) {
+    public Display(String message) {
         this.message = message;
     }
 
