@@ -40,14 +40,15 @@ public class InterpreterTest {
     }
 
     @Test
-    public void shouldCallTheCheckoutMethodOfLibraryWhenIPassTwoInInterpretMethod() {
+    public void shouldCallTheCheckoutMethodOfLibraryWhenIPassTwoInInterpretMethodAndPrintSomeReturnedMessage() {
         interpreter = new Interpreter(library, consoleInput);
 
         when(consoleInput.getInput()).thenReturn("some book");
+        when(library.checkOutBook("some book")).thenReturn("Some book message");
 
         interpreter.interpret("2");
 
-        assertEquals("Enter book name to checkout\n", outputStream.toString());
+        assertEquals("Enter book name to checkout\nSome book message\n", outputStream.toString());
 
         verify(consoleInput, times(1)).getInput();
         verify(library, times(1)).checkOutBook("some book");

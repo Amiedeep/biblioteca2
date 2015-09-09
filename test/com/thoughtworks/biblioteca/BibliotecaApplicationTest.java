@@ -65,7 +65,6 @@ public class BibliotecaApplicationTest {
         consoleInput = mock(ConsoleInput.class);
         bibliotecaApplication = new BibliotecaApplication(welcomeView, optionView, consoleInput, interpreter);
 
-
         when(consoleInput.getInput()).thenReturn("3");
 
         exit.expectSystemExitWithStatus(0);

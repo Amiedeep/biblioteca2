@@ -16,6 +16,7 @@ public class Interpreter {
         try {
             int option = Integer.parseInt(input);
             String bookName = "";
+            String returnMessage;
             switch (option) {
                 case 1:
                     String bookList = library.listBooks();
@@ -24,7 +25,8 @@ public class Interpreter {
                 case 2:
                     new View("Enter book name to checkout").display();
                     bookName = consoleInput.getInput();
-                    library.checkOutBook(bookName);
+                    returnMessage = library.checkOutBook(bookName);
+                    new View(returnMessage).display();
                     break;
                 case 3:
                     System.exit(0);
