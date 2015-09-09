@@ -1,9 +1,9 @@
 package com.thoughtworks.biblioteca;
 
-import junit.framework.Assert;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
-
+import org.junit.contrib.java.lang.system.ExpectedSystemExit;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
@@ -16,6 +16,9 @@ public class InterpreterTest {
     private Library library;
     private ConsoleInput consoleInput;
     private ByteArrayOutputStream outputStream;
+
+    @Rule
+    public final ExpectedSystemExit exit = ExpectedSystemExit.none();
 
     @Before
     public void setUp() {
@@ -66,5 +69,14 @@ public class InterpreterTest {
         interpreter.interpret("abc");
 
         assertEquals("Select a valid option!\n", outputStream.toString());
+    }
+
+    @Test
+    public void shouldExitTheSystemWhenUserChooseQuitOption() {
+        interpreter = new Interpreter(library, consoleInput);
+
+        exit.expectSystemExitWithStatus(0);
+
+        interpreter.interpret("3");
     }
 }

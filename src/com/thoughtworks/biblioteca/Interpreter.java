@@ -25,6 +25,8 @@ public class Interpreter {
                     String bookName = consoleInput.getInput();
                     library.checkOutBook(bookName);
                     break;
+                case 3:
+                    System.exit(0);
                 default:
                     invalidOption.display();
             }
