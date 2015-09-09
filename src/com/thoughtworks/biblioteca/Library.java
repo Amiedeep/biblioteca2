@@ -34,14 +34,14 @@ public class Library {
         checkedOutBooks.add(book);
     }
 
-    public boolean returnBook(String bookName) {
+    public String returnBook(String bookName) {
         for(Book book : checkedOutBooks) {
             if(book.compareBookNameWith(bookName)) {
                 returnBook(book);
-                return true;
+                return "Thank you for returning the book";
             }
         }
-        return false;
+        return "";
     }
 
     private void returnBook(Book book) {

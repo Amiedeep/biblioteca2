@@ -43,20 +43,20 @@ public class LibraryTest {
     public void shouldReturnMeFalseWhenIPassNullToReturnBookMethod() {
         library = new Library();
 
-        assertEquals(false, library.returnBook(null));
+        assertEquals("", library.returnBook(null));
     }
 
     @Test
     public void shouldReturnMeFalseWhenIPassSomeOtherBookNameToReturnBookMethod() {
         library = new Library();
 
-        assertEquals(false, library.returnBook("some non-existing book"));
+        assertEquals("", library.returnBook("some non-existing book"));
     }
 
     @Test
     public void shouldReturnMeTrueWhenIPassExistingBookNameToReturnBookMethod() {
         library = new Library();
 
-        assertEquals(true, library.returnBook("Do rajya"));
+        assertEquals("Thank you for returning the book", library.returnBook("Do rajya"));
     }
 }
