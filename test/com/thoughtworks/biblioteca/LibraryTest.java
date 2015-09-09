@@ -13,8 +13,10 @@ public class LibraryTest {
         library = new Library();
 
         String expected ="List of books we have is: \n" +
-                "scjp                                     kathy sierra                             1990                                    \n"+
-                "head first java                          someone                                  2014                                    \n";
+                         "Name                                     Author                                   Year Published                          \n" +
+                         "------------------------------------------------------------------------------------------------\n" +
+                         "scjp                                     kathy sierra                             1990                                    \n"+
+                         "head first java                          someone                                  2014                                    \n";
         assertEquals(expected, library.listBooks());
     }
 
@@ -43,14 +45,14 @@ public class LibraryTest {
     public void shouldReturnMeFalseWhenIPassNullToReturnBookMethod() {
         library = new Library();
 
-        assertEquals("", library.returnBook(null));
+        assertEquals("This is not a valid book to return", library.returnBook(null));
     }
 
     @Test
     public void shouldReturnMeFalseWhenIPassSomeOtherBookNameToReturnBookMethod() {
         library = new Library();
 
-        assertEquals("", library.returnBook("some non-existing book"));
+        assertEquals("This is not a valid book to return", library.returnBook("some non-existing book"));
     }
 
     @Test

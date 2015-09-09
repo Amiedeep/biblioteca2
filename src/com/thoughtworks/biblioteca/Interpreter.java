@@ -30,7 +30,6 @@ public class Interpreter {
                     break;
                 case 3:
                     System.exit(0);
-                    break;
                 case 4:
                     new Display("Enter book name to return").display();
                     bookName = consoleInput.getInput();

@@ -13,9 +13,19 @@ public class Library {
 
     public String listBooks() {
         String bookList = "List of books we have is: \n";
+        bookList = printHeaders(bookList);
         for(Book book : listOfBooks) {
             bookList += book.toString();
         }
+        return bookList;
+    }
+
+    private String printHeaders(String bookList) {
+        bookList += String.format("%-40s %-40s %-40s\n", "Name", "Author", "Year Published");
+        for (int i = 0; i < 96; i++) {
+            bookList += "-";
+        }
+        bookList += "\n";
         return bookList;
     }
 
@@ -41,7 +51,7 @@ public class Library {
                 return "Thank you for returning the book";
             }
         }
-        return "";
+        return "This is not a valid book to return";
     }
 
     private void returnBook(Book book) {
