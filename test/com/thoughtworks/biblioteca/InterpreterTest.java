@@ -58,4 +58,13 @@ public class InterpreterTest {
 
         assertEquals("Select a valid option!\n", outputStream.toString());
     }
+
+    @Test
+    public void shouldDisplayTheInvalidMessageWhenIPassSomeInvalidInputInInterpretMethod() {
+        interpreter = new Interpreter(library, consoleInput);
+
+        interpreter.interpret("abc");
+
+        assertEquals("Select a valid option!\n", outputStream.toString());
+    }
 }
