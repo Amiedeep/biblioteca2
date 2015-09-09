@@ -19,14 +19,14 @@ public class Library {
         return bookList;
     }
 
-    public boolean checkOutBook(String bookName) {
+    public String checkOutBook(String bookName) {
         for(Book book : listOfBooks) {
             if(book.compareBookNameWith(bookName)) {
                 checkOutBook(book);
-                return true;
+                return "Thank You! Enjoy the book";
             }
         }
-        return false;
+        return "";
     }
 
     private void checkOutBook(Book book) {

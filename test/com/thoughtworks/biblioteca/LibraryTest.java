@@ -22,20 +22,20 @@ public class LibraryTest {
     public void shouldReturnMeFalseWhenIPassNullToCheckOutBookMethod() {
         library = new Library();
 
-        assertEquals(false, library.checkOutBook(null));
+        assertEquals("", library.checkOutBook(null));
     }
 
     @Test
     public void shouldReturnMeFalseWhenIPassSomeOtherBookNameToCheckOutBookMethod() {
         library = new Library();
 
-        assertEquals(false, library.checkOutBook("some non-existing book"));
+        assertEquals("", library.checkOutBook("some non-existing book"));
     }
 
     @Test
     public void shouldReturnMeTrueWhenIPassExistingBookNameToCheckOutBookMethod() {
         library = new Library();
 
-        assertEquals(true, library.checkOutBook("scjp"));
+        assertEquals("Thank You! Enjoy the book", library.checkOutBook("scjp"));
     }
 }
