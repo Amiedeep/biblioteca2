@@ -9,7 +9,7 @@ public class Library {
 
     private List<Book> listOfBooks = new ArrayList<>(Arrays.asList(new Book("scjp", "kathy sierra", 1990),
                                                          new Book("head first java", "someone", 2014)));
-    private List<Book> checkedOutBooks = new ArrayList<>();
+    private List<Book> checkedOutBooks = new ArrayList<>(Arrays.asList(new Book("Do rajya", "chetan bhagat", 1767)));
 
     public String listBooks() {
         String bookList = "List of books we have is: \n";
@@ -35,6 +35,17 @@ public class Library {
     }
 
     public boolean returnBook(String bookName) {
+        for(Book book : checkedOutBooks) {
+            if(book.compareBookNameWith(bookName)) {
+                returnBook(book);
+                return true;
+            }
+        }
         return false;
+    }
+
+    private void returnBook(Book book) {
+        checkedOutBooks.remove(book);
+        listOfBooks.add(book);
     }
 }
