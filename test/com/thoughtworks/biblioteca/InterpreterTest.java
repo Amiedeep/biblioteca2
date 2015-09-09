@@ -49,4 +49,13 @@ public class InterpreterTest {
         verify(consoleInput, times(1)).getInput();
         verify(library, times(1)).checkOutBook("some book");
     }
+
+    @Test
+    public void shouldDisplayTheInvalidMessageWhenIPassSomeInvalidNumberInInterpretMethod() {
+        interpreter = new Interpreter(library, consoleInput);
+
+        interpreter.interpret("8");
+
+        assertEquals("Select a valid option!\n", outputStream.toString());
+    }
 }

@@ -13,6 +13,7 @@ public class Interpreter {
 
     public void interpret(String input) {
         int option = Integer.parseInt(input);
+        View invalidOption = new View("Select a valid option!");
         switch (option) {
             case 1:
                 String bookList = library.listBooks();
@@ -23,6 +24,8 @@ public class Interpreter {
                 String bookName = consoleInput.getInput();
                 library.checkOutBook(bookName);
                 break;
+            default:
+                invalidOption.display();
         }
     }
 }
