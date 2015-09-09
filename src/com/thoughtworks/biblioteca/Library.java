@@ -33,4 +33,8 @@ public class Library {
         listOfBooks.remove(book);
         checkedOutBooks.add(book);
     }
+
+    public boolean returnBook(String bookName) {
+        return false;
+    }
 }

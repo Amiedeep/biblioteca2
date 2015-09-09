@@ -19,23 +19,30 @@ public class LibraryTest {
     }
 
     @Test
-    public void shouldReturnMeFalseWhenIPassNullToCheckOutBookMethod() {
+    public void shouldReturnMeNotAvailableWhenIPassNullToCheckOutBookMethod() {
         library = new Library();
 
         assertEquals("That book is not available", library.checkOutBook(null));
     }
 
     @Test
-    public void shouldReturnMeFalseWhenIPassSomeOtherBookNameToCheckOutBookMethod() {
+    public void shouldReturnMeNotAvailableWhenIPassSomeOtherBookNameToCheckOutBookMethod() {
         library = new Library();
 
         assertEquals("That book is not available", library.checkOutBook("some non-existing book"));
     }
 
     @Test
-    public void shouldReturnMeTrueWhenIPassExistingBookNameToCheckOutBookMethod() {
+    public void shouldReturnMeAvailableWhenIPassExistingBookNameToCheckOutBookMethod() {
         library = new Library();
 
         assertEquals("Thank You! Enjoy the book", library.checkOutBook("scjp"));
+    }
+
+    @Test
+    public void shouldReturnMeFalseWhenIPassNullToReturnBookMethod() {
+        library = new Library();
+
+        assertEquals(false, library.returnBook(null));
     }
 }
