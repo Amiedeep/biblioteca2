@@ -82,14 +82,15 @@ public class InterpreterTest {
     }
 
     @Test
-    public void shouldCallTheReturnBookMethodOfLibraryWhenIPassFourInInterpretMethod() {
+    public void shouldCallTheReturnBookMethodOfLibraryWhenIPassFourInInterpretMethodAndPrintSomeReturnedMessage() {
         interpreter = new Interpreter(library, consoleInput);
 
         when(consoleInput.getInput()).thenReturn("some book");
+        when(library.returnBook("some book")).thenReturn("some book message");
 
         interpreter.interpret("4");
 
-        assertEquals("Enter book name to return\n", outputStream.toString());
+        assertEquals("Enter book name to return\nsome book message\n", outputStream.toString());
 
         verify(consoleInput, times(1)).getInput();
         verify(library, times(1)).returnBook("some book");

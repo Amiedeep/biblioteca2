@@ -34,7 +34,8 @@ public class Interpreter {
                 case 4:
                     new Display("Enter book name to return").display();
                     bookName = consoleInput.getInput();
-                    library.returnBook(bookName);
+                    returnMessage = library.returnBook(bookName);
+                    new Display(returnMessage).display();
                     break;
                 default:
                     invalidOption.display();
