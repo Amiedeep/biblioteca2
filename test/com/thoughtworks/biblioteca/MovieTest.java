@@ -22,4 +22,11 @@ public class MovieTest {
 
         assertEquals(false, movie.compareMovieNameWith(null));
     }
+
+    @Test
+    public void shouldReturnMeFalseifIPassDifferentNameAsParameterInCompareMovieNameWithMethod() {
+        movie = new Movie("harry potter", 2010, "Some one", 4);
+
+        assertEquals(false, movie.compareMovieNameWith("some non-sense"));
+    }
 }
