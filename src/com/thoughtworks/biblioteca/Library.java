@@ -13,15 +13,15 @@ public class Library {
 
     public String listBooks() {
         String bookList = "List of books we have is: \n";
-        bookList += printHeaders(bookList);
+        bookList += printHeaders();
         for(Book book : listOfBooks) {
             bookList += book.toString();
         }
         return bookList;
     }
 
-    private String printHeaders(String bookList) {
-        bookList = String.format("%-40s %-40s %-40s\n", "Name", "Author", "Year Published");
+    private String printHeaders() {
+        String bookList = String.format("%-40s %-40s %-40s\n", "Name", "Author", "Year Published");
         for (int i = 0; i < 96; i++) {
             bookList += "-";
         }
