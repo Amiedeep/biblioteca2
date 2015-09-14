@@ -10,10 +10,10 @@ public class BookTest {
 
     @Test
     public void shouldShowMeTheBookDetailInFormattedOrder() {
+        String expectedString = String.format("%-40s %-40s %-40s\n", "harry potter", "someone really good", 2010);
         book = new Book("harry potter", "someone really good", 2010);
 
-        assertEquals("harry potter                             someone really good                      2010                                    \n",
-                     book.toString());
+        assertEquals(expectedString, book.toString());
     }
 
     @Test
