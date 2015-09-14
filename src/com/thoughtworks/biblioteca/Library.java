@@ -8,11 +8,11 @@ import java.util.List;
 public class Library {
 
     private List<Book> listOfBooks = new ArrayList<>(Arrays.asList(new Book("scjp", "kathy sierra", 1990),
-                                                         new Book("head first java", "someone", 2014)));
+                                                                   new Book("head first java", "someone", 2014)));
     private List<Book> checkedOutBooks = new ArrayList<>(Arrays.asList(new Book("Do rajya", "chetan bhagat", 1767)));
     private List<Movie> listOfMovies = new ArrayList<>(Arrays.asList(new Movie("sholay", 1981, "Shakti kapoor", 10),
-                                       new Movie("sehansha", 1990, "Sunny deol", 9),
-                                       new Movie("3 idiots", 2010, "Amandeep Singh", 10)));
+                                                                     new Movie("sehansha", 1990, "Sunny deol", 9),
+                                                                     new Movie("3 idiots", 2010, "Amandeep Singh", 10)));
 
     public String listBooks() {
         String bookList = "List of books we have is: \n";
