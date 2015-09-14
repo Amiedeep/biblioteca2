@@ -19,4 +19,8 @@ public class Movie {
     public String toString() {
         return String.format("%-40s %-40s %-40s %-40s\n", name, year, director, rating);
     }
+
+    public boolean compareMovieNameWith(String thatName) {
+        return false;
+    }
 }

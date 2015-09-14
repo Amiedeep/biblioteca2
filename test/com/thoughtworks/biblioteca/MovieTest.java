@@ -15,4 +15,11 @@ public class MovieTest {
 
         assertEquals(expectedString, movie.toString());
     }
+
+    @Test
+    public void shouldReturnMeFalseifIPassNullAsParameterInCompareMovieNameWithMethod() {
+        movie = new Movie("harry potter", 2010, "Some one", 4);
+
+        assertEquals(false, movie.compareMovieNameWith(null));
+    }
 }
