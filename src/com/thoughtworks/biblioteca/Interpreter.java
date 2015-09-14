@@ -25,9 +25,17 @@ public class Interpreter {
             case "4":
                 returnBook();
                 break;
+            case "5":
+                displayAllMovies();
+                break;
             default:
                 invalidOption.display();
         }
+    }
+
+    private void displayAllMovies() {
+        String movieList = library.listMovies();
+        new Display(movieList).display();
     }
 
     private void returnBook() {

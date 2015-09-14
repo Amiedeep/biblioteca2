@@ -40,6 +40,17 @@ public class InterpreterTest {
     }
 
     @Test
+    public void shouldDisplayTheMessageLibraryReturnedWhenIPassFiveInInterpretMethod() {
+        interpreter = new Interpreter(library, consoleInput);
+
+        when(library.listMovies()).thenReturn("Movie name");
+
+        interpreter.interpret("5");
+
+        assertEquals("Movie name\n", outputStream.toString());
+    }
+
+    @Test
     public void shouldCallTheCheckoutMethodOfLibraryWhenIPassTwoInInterpretMethodAndPrintSomeReturnedMessage() {
         interpreter = new Interpreter(library, consoleInput);
 
