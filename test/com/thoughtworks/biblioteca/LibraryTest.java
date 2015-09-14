@@ -88,4 +88,11 @@ public class LibraryTest {
 
         assertEquals(false, library.checkOutMovie("some non-sense"));
     }
+
+    @Test
+    public void shouldReturnMeTrueWhenIPassExistingMovieNameToCheckOutMovieMethod() {
+        library = new Library();
+
+        assertEquals(true, library.checkOutMovie("3 idiots"));
+    }
 }

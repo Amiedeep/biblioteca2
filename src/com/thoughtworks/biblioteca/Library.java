@@ -13,6 +13,7 @@ public class Library {
     private List<Movie> listOfMovies = new ArrayList<>(Arrays.asList(new Movie("sholay", 1981, "Shakti kapoor", 10),
                                                                      new Movie("sehansha", 1990, "Sunny deol", 9),
                                                                      new Movie("3 idiots", 2010, "Amandeep Singh", 10)));
+    private List<Movie> checkedOutMovies = new ArrayList<>(Arrays.asList(new Movie("Aashiqi", 1947, "Dharmendra", 3)));
 
     public String listBooks() {
         String bookList = "List of books we have is: \n";
@@ -81,6 +82,17 @@ public class Library {
     }
 
     public boolean checkOutMovie(String movieName) {
+        for(Movie movie : listOfMovies) {
+            if(movie.compareMovieNameWith(movieName)) {
+                checkOutMovie(movie);
+                return true;
+            }
+        }
         return false;
+    }
+
+    private void checkOutMovie(Movie movie) {
+        listOfMovies.remove(movie);
+        checkedOutMovies.add(movie);
     }
 }
