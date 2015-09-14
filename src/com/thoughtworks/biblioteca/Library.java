@@ -79,4 +79,8 @@ public class Library {
         checkedOutBooks.remove(book);
         listOfBooks.add(book);
     }
+
+    public boolean checkOutMovie(String movieName) {
+        return false;
+    }
 }

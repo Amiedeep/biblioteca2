@@ -74,4 +74,11 @@ public class LibraryTest {
 
         assertEquals("Thank you for returning the book", library.returnBook("Do rajya"));
     }
+
+    @Test
+    public void shouldReturnMeFalseWhenIPassNullTocCheckOutMovieMethod() {
+        library = new Library();
+
+        assertEquals(false, library.checkOutMovie(null));
+    }
 }
