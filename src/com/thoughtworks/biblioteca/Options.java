@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Options {
 
-    private final List<String> options = Arrays.asList("List Books", "Checkout book", "Quit", "Return book", "List Movies");
+    private final List<String> options = Arrays.asList("List Books", "Checkout book", "Quit", "Return book", "List Movies", "checkout movie");
 
     public String getOptions() {
         String listOfOptions = "Please choose one option: \n";
