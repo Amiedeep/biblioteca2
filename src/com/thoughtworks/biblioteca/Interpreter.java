@@ -28,9 +28,18 @@ public class Interpreter {
             case "5":
                 displayAllMovies();
                 break;
+            case "6":
+                checkOutMovie();
+                break;
             default:
                 invalidOption.display();
         }
+    }
+
+    private void checkOutMovie() {
+        new Display("Enter movie name to checkout").display();
+        String movieName = consoleInput.getInput();
+        library.checkOutMovie(movieName);
     }
 
     private void displayAllMovies() {

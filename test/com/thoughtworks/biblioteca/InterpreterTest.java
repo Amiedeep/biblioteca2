@@ -106,4 +106,18 @@ public class InterpreterTest {
         verify(consoleInput, times(1)).getInput();
         verify(library, times(1)).returnBook("some book");
     }
+
+    @Test
+    public void shouldCallTheCheckoutMovieMethodOfLibraryWhenIPassSixInInterpretMethod() {
+        interpreter = new Interpreter(library, consoleInput);
+
+        when(consoleInput.getInput()).thenReturn("some movie");
+
+        interpreter.interpret("6");
+
+        assertEquals("Enter movie name to checkout\n", outputStream.toString());
+
+        verify(consoleInput, times(1)).getInput();
+        verify(library, times(1)).checkOutMovie("some movie");
+    }
 }
