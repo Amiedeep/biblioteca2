@@ -21,6 +21,6 @@ public class Movie {
     }
 
     public boolean compareMovieNameWith(String thatName) {
-        return false;
+        return name.equals(thatName);
     }
 }
