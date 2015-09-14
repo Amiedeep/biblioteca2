@@ -21,6 +21,19 @@ public class LibraryTest {
     }
 
     @Test
+    public void shouldShowListOfMoviesInFormattedOrder() {
+        library = new Library();
+
+        String expected ="List of movies we have is: \n" +
+                         "Name                                     Year                                     Director                                 Rating                                  \n" +
+                         "---------------------------------------------------------------------------------------------------------------------------------\n" +
+                         "sholay                                   1981                                     Shakti kapoor                            10                                      \n" +
+                         "sehansha                                 1990                                     Sunny deol                               9                                       \n"+
+                         "3 idiots                                 2010                                     Amandeep Singh                           10                                      \n";
+        assertEquals(expected, library.listMovies());
+    }
+
+    @Test
     public void shouldReturnMeNotAvailableWhenIPassNullToCheckOutBookMethod() {
         library = new Library();
 
