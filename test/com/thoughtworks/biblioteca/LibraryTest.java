@@ -95,4 +95,9 @@ public class LibraryTest {
     public void shouldReturnMeNullWhenIPassNullAsPasswordToLogInUserMethod() {
         assertNull(library.logInUser("Some username", null));
     }
+
+    @Test
+    public void shouldReturnMeNullWhenIPassInvalidUsernameAndPasswordToLogInUserMethod() {
+        assertNull(library.logInUser("Some invalid username", "Some invalid password"));
+    }
 }
