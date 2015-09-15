@@ -98,6 +98,11 @@ public class Library {
     }
 
     public User logInUser(String userName, String password) {
+        for(User user : listOfUsers) {
+            if(user.logIn(userName, password)) {
+                return user;
+            }
+        }
         return null;
     }
 }

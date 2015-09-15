@@ -100,4 +100,9 @@ public class LibraryTest {
     public void shouldReturnMeNullWhenIPassInvalidUsernameAndPasswordToLogInUserMethod() {
         assertNull(library.logInUser("Some invalid username", "Some invalid password"));
     }
+
+    @Test
+    public void shouldReturnMeSimpleUserWhenIPassvalidSimpleUserUsernameAndPasswordToLogInUserMethod() {
+        assertEquals(SimpleUser.class, library.logInUser("111-2222", "abcd").getClass());
+    }
 }
