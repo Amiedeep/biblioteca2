@@ -14,6 +14,7 @@ public class Library {
                                                                      new Movie("sehansha", 1990, "Sunny deol", 9),
                                                                      new Movie("3 idiots", 2010, "Amandeep Singh", 10)));
     private List<Movie> checkedOutMovies = new ArrayList<>(Arrays.asList(new Movie("Aashiqi", 1947, "Dharmendra", 3)));
+    private List<User> listOfUsers = new ArrayList<>(Arrays.asList(new SimpleUser("111-2222", "abcd"), new LibrarianUser("222-1111", "dcba")));
 
     public String listBooks() {
         String bookList = "List of books we have is: \n";
@@ -94,5 +95,9 @@ public class Library {
     private void checkOutMovie(Movie movie) {
         listOfMovies.remove(movie);
         checkedOutMovies.add(movie);
+    }
+
+    public User logInUser(String userName, String password) {
+        return null;
     }
 }
