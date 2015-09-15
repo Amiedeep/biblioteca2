@@ -102,7 +102,12 @@ public class LibraryTest {
     }
 
     @Test
-    public void shouldReturnMeSimpleUserWhenIPassvalidSimpleUserUsernameAndPasswordToLogInUserMethod() {
+    public void shouldReturnMeSimpleUserWhenIPassValidSimpleUserUsernameAndPasswordToLogInUserMethod() {
         assertEquals(SimpleUser.class, library.logInUser("111-2222", "abcd").getClass());
+    }
+
+    @Test
+    public void shouldReturnMeLibrarianUserWhenIPassValidLibrarianUserUsernameAndPasswordToLogInUserMethod() {
+        assertEquals(LibrarianUser.class, library.logInUser("222-1111", "dcba").getClass());
     }
 }
