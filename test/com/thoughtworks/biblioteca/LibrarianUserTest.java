@@ -18,4 +18,9 @@ public class LibrarianUserTest {
     public void shouldReturnMeFalseWhenUserNameAndPasswordAreNull() {
         assertFalse(user.logIn(null, null));
     }
+
+    @Test
+    public void shouldReturnMeFalseWhenUserNameIsNull() {
+        assertFalse(user.logIn(null, "something"));
+    }
 }
