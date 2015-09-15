@@ -31,6 +31,11 @@ public class LibrarianUserTest {
     }
 
     @Test
+    public void shouldReturnMeFalseWhenUserNameAndPasswordAreInvalid() {
+        assertFalse(user.logIn("222-4444", "dcab"));
+    }
+
+    @Test
     public void shouldReturnMeTrueWhenUserNameAndPasswordMatch() {
         assertTrue(user.logIn("222-1111", "dcba"));
     }
