@@ -12,6 +12,6 @@ public class LibrarianUser implements User {
 
     @Override
     public boolean logIn(String thatUserName, String thatPassword) {
-        return false;
+        return userName.equals(thatUserName) && password.equals(thatPassword);
     }
 }
