@@ -23,4 +23,9 @@ public class SimpleUserTest {
     public void shouldReturnMeFalseWhenUserNameIsNull() {
         assertFalse(user.logIn(null, "something"));
     }
+
+    @Test
+    public void shouldReturnMeFalseWhenPasswordIsNull() {
+        assertFalse(user.logIn("something", null));
+    }
 }
