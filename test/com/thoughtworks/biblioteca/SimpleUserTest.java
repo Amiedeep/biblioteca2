@@ -34,4 +34,9 @@ public class SimpleUserTest {
     public void shouldReturnMeTrueWhenUserNameAndPasswordMatch() {
         assertTrue(user.logIn("111-2222", "abcd"));
     }
+
+    @Test
+    public void shouldReturnMeFalseWhenUserNameAndPasswordAreInvalid() {
+        assertFalse(user.logIn("111-3333", "acd"));
+    }
 }
