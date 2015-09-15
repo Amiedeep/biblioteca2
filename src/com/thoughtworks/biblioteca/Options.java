@@ -1,12 +1,15 @@
 //This class has option list to choose from for user
 package com.thoughtworks.biblioteca;
 
-import java.util.Arrays;
 import java.util.List;
 
-public class Options {
+public abstract class Options {
 
-    private final List<String> options = Arrays.asList("List Books", "Checkout book", "Quit", "Return book", "List Movies", "checkout movie");
+    public List<String> options;
+
+    public Options(List<String> options) {
+        this.options = options;
+    }
 
     public String getOptions() {
         String listOfOptions = "Please choose one option: \n";

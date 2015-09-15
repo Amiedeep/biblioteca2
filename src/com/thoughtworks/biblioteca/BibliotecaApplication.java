@@ -18,7 +18,7 @@ public class BibliotecaApplication {
     }
 
     public static void main(String[] args) {
-        Options options = new Options();
+        Options options = new SimpleUserOptions();
         String welcomeMessage = "Hey! Welcome to biblioteca";
         Library library = new Library();
         ConsoleInput consoleInput = new ConsoleInput(new Scanner(System.in));
