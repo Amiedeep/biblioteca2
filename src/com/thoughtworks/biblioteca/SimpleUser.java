@@ -12,7 +12,7 @@ public class SimpleUser implements User {
     }
 
     @Override
-    public boolean logIn(String userName, String password) {
-        return false;
+    public boolean logIn(String thatUserName, String thatPassword) {
+        return userName.equals(thatUserName) && password.equals(thatPassword);
     }
 }

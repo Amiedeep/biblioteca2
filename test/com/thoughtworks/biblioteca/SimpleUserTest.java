@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static junit.framework.TestCase.assertFalse;
+import static junit.framework.TestCase.assertTrue;
 
 public class SimpleUserTest {
 
@@ -27,5 +28,10 @@ public class SimpleUserTest {
     @Test
     public void shouldReturnMeFalseWhenPasswordIsNull() {
         assertFalse(user.logIn("something", null));
+    }
+
+    @Test
+    public void shouldReturnMeTrueWhenUserNameAndPasswordMatch() {
+        assertTrue(user.logIn("111-2222", "abcd"));
     }
 }
