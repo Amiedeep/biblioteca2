@@ -10,7 +10,7 @@ public class BibliotecaApplication {
     private ConsoleInput consoleInput;
     private Interpreter interpreter;
 
-    public BibliotecaApplication(Display welcomeDisplay, Display optionsDisplay, ConsoleInput consoleInput, Interpreter interpreter) {
+    public BibliotecaApplication(Display welcomeDisplay, Display optionsDisplay, ConsoleInput consoleInput, SimpleUserInterpreter interpreter) {
         this.welcomeDisplay = welcomeDisplay;
         this.optionsDisplay = optionsDisplay;
         this.consoleInput = consoleInput;
@@ -25,7 +25,7 @@ public class BibliotecaApplication {
         BibliotecaApplication bibliotecaApplication = new BibliotecaApplication(new Display(welcomeMessage),
                                                                                 new Display(options.getOptions()),
                                                                                 consoleInput,
-                                                                                new Interpreter(library, consoleInput));
+                                                                                new SimpleUserInterpreter(library, consoleInput));
         bibliotecaApplication.start();
     }
 

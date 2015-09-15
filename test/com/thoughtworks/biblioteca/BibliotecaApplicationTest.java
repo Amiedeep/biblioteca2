@@ -15,7 +15,7 @@ public class BibliotecaApplicationTest {
     private Display welcomeDisplay;
     private Display optionDisplay;
     private ConsoleInput consoleInput;
-    private Interpreter interpreter;
+    private SimpleUserInterpreter simpleUserInterpreter;
 
     @Rule
     public ExpectedSystemExit exit = ExpectedSystemExit.none();
@@ -25,13 +25,13 @@ public class BibliotecaApplicationTest {
         welcomeDisplay = new Display("welcome display");
         optionDisplay = new Display("Display display");
         consoleInput = new ConsoleInput(new Scanner(System.in));
-        interpreter = new Interpreter(new Library(), consoleInput);
+        simpleUserInterpreter = new SimpleUserInterpreter(new Library(), consoleInput);
     }
 
     @Test
     public void shouldCallDisplayMethodOfOptionsDisplayObjectWhenICallPrintMenuOptions() {
         optionDisplay = mock(Display.class);
-        bibliotecaApplication = new BibliotecaApplication(welcomeDisplay, optionDisplay, consoleInput, interpreter);
+        bibliotecaApplication = new BibliotecaApplication(welcomeDisplay, optionDisplay, consoleInput, simpleUserInterpreter);
 
         bibliotecaApplication.printMenuOptions();
 
@@ -41,7 +41,7 @@ public class BibliotecaApplicationTest {
     @Test
     public void shouldCallDisplayMethodOfWelcomeDisplayObjectWhenICallPrintWelcomeMessage() {
         welcomeDisplay = mock(Display.class);
-        bibliotecaApplication = new BibliotecaApplication(welcomeDisplay, optionDisplay, consoleInput, interpreter);
+        bibliotecaApplication = new BibliotecaApplication(welcomeDisplay, optionDisplay, consoleInput, simpleUserInterpreter);
 
         bibliotecaApplication.printWelcomeMessage();
 
@@ -51,7 +51,7 @@ public class BibliotecaApplicationTest {
     @Test
     public void shouldTakeTheUserInputAndPerformOperationWhenICallTakeUserInputAndInterpretMethod() {
         consoleInput = mock(ConsoleInput.class);
-        bibliotecaApplication = new BibliotecaApplication(welcomeDisplay, optionDisplay, consoleInput, interpreter);
+        bibliotecaApplication = new BibliotecaApplication(welcomeDisplay, optionDisplay, consoleInput, simpleUserInterpreter);
 
         when(consoleInput.getInput()).thenReturn("1", "3");
 
@@ -63,7 +63,7 @@ public class BibliotecaApplicationTest {
     @Test
     public void shouldVerifyIfAllMethodsAreCalledWhenICallStartMethod() {
         consoleInput = mock(ConsoleInput.class);
-        bibliotecaApplication = new BibliotecaApplication(welcomeDisplay, optionDisplay, consoleInput, interpreter);
+        bibliotecaApplication = new BibliotecaApplication(welcomeDisplay, optionDisplay, consoleInput, simpleUserInterpreter);
 
         when(consoleInput.getInput()).thenReturn("3");
 

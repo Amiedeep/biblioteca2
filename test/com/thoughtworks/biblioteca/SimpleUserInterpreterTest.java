@@ -10,9 +10,9 @@ import java.io.PrintStream;
 import static junit.framework.TestCase.assertEquals;
 import static org.mockito.Mockito.*;
 
-public class InterpreterTest {
+public class SimpleUserInterpreterTest {
 
-    private Interpreter interpreter;
+    private SimpleUserInterpreter simpleUserInterpreter;
     private Library library;
     private ConsoleInput consoleInput;
     private ByteArrayOutputStream outputStream;
@@ -30,34 +30,34 @@ public class InterpreterTest {
 
     @Test
     public void shouldDisplayTheMessageLibraryReturnedWhenIPassOneInInterpretMethod() {
-        interpreter = new Interpreter(library, consoleInput);
+        simpleUserInterpreter = new SimpleUserInterpreter(library, consoleInput);
 
         when(library.listBooks()).thenReturn("Book name");
 
-        interpreter.interpret("1");
+        simpleUserInterpreter.interpret("1");
 
         assertEquals("Book name\n", outputStream.toString());
     }
 
     @Test
     public void shouldDisplayTheMessageLibraryReturnedWhenIPassFiveInInterpretMethod() {
-        interpreter = new Interpreter(library, consoleInput);
+        simpleUserInterpreter = new SimpleUserInterpreter(library, consoleInput);
 
         when(library.listMovies()).thenReturn("Movie name");
 
-        interpreter.interpret("5");
+        simpleUserInterpreter.interpret("5");
 
         assertEquals("Movie name\n", outputStream.toString());
     }
 
     @Test
     public void shouldCallTheCheckoutMethodOfLibraryWhenIPassTwoInInterpretMethodAndPrintSomeReturnedMessage() {
-        interpreter = new Interpreter(library, consoleInput);
+        simpleUserInterpreter = new SimpleUserInterpreter(library, consoleInput);
 
         when(consoleInput.getInput()).thenReturn("some book");
         when(library.checkOutBook("some book")).thenReturn("Some book message");
 
-        interpreter.interpret("2");
+        simpleUserInterpreter.interpret("2");
 
         assertEquals("Enter book name to checkout\nSome book message\n", outputStream.toString());
 
@@ -67,39 +67,39 @@ public class InterpreterTest {
 
     @Test
     public void shouldDisplayTheInvalidMessageWhenIPassSomeInvalidNumberInInterpretMethod() {
-        interpreter = new Interpreter(library, consoleInput);
+        simpleUserInterpreter = new SimpleUserInterpreter(library, consoleInput);
 
-        interpreter.interpret("8");
+        simpleUserInterpreter.interpret("8");
 
         assertEquals("Select a valid option!\n", outputStream.toString());
     }
 
     @Test
     public void shouldDisplayTheInvalidMessageWhenIPassSomeInvalidInputInInterpretMethod() {
-        interpreter = new Interpreter(library, consoleInput);
+        simpleUserInterpreter = new SimpleUserInterpreter(library, consoleInput);
 
-        interpreter.interpret("abc");
+        simpleUserInterpreter.interpret("abc");
 
         assertEquals("Select a valid option!\n", outputStream.toString());
     }
 
     @Test
     public void shouldExitTheSystemWhenUserChooseQuitOption() {
-        interpreter = new Interpreter(library, consoleInput);
+        simpleUserInterpreter = new SimpleUserInterpreter(library, consoleInput);
 
         exit.expectSystemExitWithStatus(0);
 
-        interpreter.interpret("3");
+        simpleUserInterpreter.interpret("3");
     }
 
     @Test
     public void shouldCallTheReturnBookMethodOfLibraryWhenIPassFourInInterpretMethodAndPrintSomeReturnedMessage() {
-        interpreter = new Interpreter(library, consoleInput);
+        simpleUserInterpreter = new SimpleUserInterpreter(library, consoleInput);
 
         when(consoleInput.getInput()).thenReturn("some book");
         when(library.returnBook("some book")).thenReturn("some book message");
 
-        interpreter.interpret("4");
+        simpleUserInterpreter.interpret("4");
 
         assertEquals("Enter book name to return\nsome book message\n", outputStream.toString());
 
@@ -109,11 +109,11 @@ public class InterpreterTest {
 
     @Test
     public void shouldCallTheCheckoutMovieMethodOfLibraryWhenIPassSixInInterpretMethod() {
-        interpreter = new Interpreter(library, consoleInput);
+        simpleUserInterpreter = new SimpleUserInterpreter(library, consoleInput);
 
         when(consoleInput.getInput()).thenReturn("some movie");
 
-        interpreter.interpret("6");
+        simpleUserInterpreter.interpret("6");
 
         assertEquals("Enter movie name to checkout\n", outputStream.toString());
 
