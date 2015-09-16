@@ -18,7 +18,7 @@ public class Library {
     private List<Movie> checkedOutMovies = new ArrayList<>(Arrays.asList(new Movie("Aashiqi", 1947, "Dharmendra", 3)));
     private List<User> listOfUsers = new ArrayList<>(Arrays.asList(new SimpleUser("111-2222", "abcd"), new LibrarianUser("222-1111", "dcba")));
 
-    private HashMap<Book, User> bookCheckOutDetails = new HashMap<>();
+    private Map<Book, User> bookCheckOutDetails = new LinkedHashMap<>();
     private User currentUser;
 
     public Library(User currentUser) {
