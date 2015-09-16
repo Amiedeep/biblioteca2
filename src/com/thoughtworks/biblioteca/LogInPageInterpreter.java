@@ -17,6 +17,9 @@ public class LogInPageInterpreter {
             case "1" :
                 user = logIn();
                 break;
+            case "2" :
+                user = new GuestUser();
+                break;
         }
         return user;
     }

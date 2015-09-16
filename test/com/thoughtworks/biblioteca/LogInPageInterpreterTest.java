@@ -53,4 +53,9 @@ public class LogInPageInterpreterTest {
         assertEquals(logInPageInterpreter.interpret("1").getClass(), LibrarianUser.class);
         assertEquals("Enter Library number :\n" + "Enter Password :\n", outputStream.toString());
     }
+
+    @Test
+    public void shouldReturnMeGuestUserWhenIPassTwoToInterpretMethod() {
+        assertEquals(logInPageInterpreter.interpret("2").getClass(), GuestUser.class);
+    }
 }
