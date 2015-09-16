@@ -50,4 +50,20 @@ public class BibliotecaApplication {
     public void printWelcomeMessage() {
         welcomeDisplay.display();
     }
+
+    public void startApplication(LogInPageInterpreter logInPageInterpreter) {
+        printWelcomeMessage();
+        printMenuOptions();
+        getLoginPageOptionAndInterpret(logInPageInterpreter);
+    }
+
+    private void getLoginPageOptionAndInterpret(LogInPageInterpreter logInPageInterpreter) {
+        String option = consoleInput.getInput();
+        User user = logInPageInterpreter.interpret(option);
+
+        if(user == null) {
+            printMenuOptions();
+            getLoginPageOptionAndInterpret(logInPageInterpreter);
+        }
+    }
 }

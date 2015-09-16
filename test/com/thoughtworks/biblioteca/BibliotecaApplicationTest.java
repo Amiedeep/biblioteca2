@@ -5,8 +5,11 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.contrib.java.lang.system.ExpectedSystemExit;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.util.Scanner;
 
+import static junit.framework.TestCase.assertEquals;
 import static org.mockito.Mockito.*;
 
 public class BibliotecaApplicationTest {
@@ -16,6 +19,7 @@ public class BibliotecaApplicationTest {
     private Display optionDisplay;
     private ConsoleInput consoleInput;
     private SimpleUserInterpreter simpleUserInterpreter;
+    private LogInPageInterpreter logInPageInterpreter;
 
     @Rule
     public ExpectedSystemExit exit = ExpectedSystemExit.none();
@@ -26,6 +30,7 @@ public class BibliotecaApplicationTest {
         optionDisplay = new Display("Display display");
         consoleInput = new ConsoleInput(new Scanner(System.in));
         simpleUserInterpreter = new SimpleUserInterpreter(new Library(), consoleInput);
+        logInPageInterpreter = mock(LogInPageInterpreter.class);
     }
 
     @Test
@@ -70,5 +75,20 @@ public class BibliotecaApplicationTest {
         exit.expectSystemExitWithStatus(0);
 
         bibliotecaApplication.start();
+    }
+
+    @Test
+    public void shouldPrintMeMenuOptionsAgainWhenIGetNullAsUser() {
+        consoleInput = mock(ConsoleInput.class);
+        optionDisplay = mock(Display.class);
+
+        when(consoleInput.getInput()).thenReturn("1", "1");
+        when(logInPageInterpreter.interpret("1")).thenReturn(null, new SimpleUser("some dummy user", "some dummy password"));
+
+        bibliotecaApplication = new BibliotecaApplication(welcomeDisplay, optionDisplay, consoleInput, simpleUserInterpreter);
+
+        bibliotecaApplication.startApplication(logInPageInterpreter);
+
+        verify(optionDisplay, times(2)).display();
     }
 }
