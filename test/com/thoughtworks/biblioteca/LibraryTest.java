@@ -119,4 +119,11 @@ public class LibraryTest {
     public void shouldReturnMeEmptyStringWhenThereIsNoBookCheckedOutAndICallCheckedOutBooksStatusMethod() {
         assertEquals("", library.checkedOutBooksStatus());
     }
+
+    @Test
+    public void shouldReturnMeBookStatusInOneLineWhenThereIsOneBookCheckedOutAndICallCheckedOutBooksStatusMethod() {
+        library = new Library(new SimpleUser("some user", "some password"));
+        library.checkOutBook("scjp");
+        assertEquals("scjp authored by kathy sierra published on 1990 is checked out by some user", library.checkedOutBooksStatus());
+    }
 }

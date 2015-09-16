@@ -118,6 +118,10 @@ public class Library {
     }
 
     public String checkedOutBooksStatus() {
-        return "";
+        String bookCheckOutInfo = "";
+        for(Book book : bookCheckOutDetails.keySet()) {
+            bookCheckOutInfo += book.bookInfo() + " is checked out by " +bookCheckOutDetails.get(book).userInfo();
+        }
+        return bookCheckOutInfo;
     }
 }
