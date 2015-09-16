@@ -121,4 +121,19 @@ public class BibliotecaApplicationTest {
 
         verify(optionDisplay, times(1)).display();
     }
+
+    @Test
+    public void shouldSetTheInterpreterAsSimpleUserInterpreterWhenIGetSimpleUserFromInterpretMethod() {
+        consoleInput = mock(ConsoleInput.class);
+        optionDisplay = mock(Display.class);
+
+        when(consoleInput.getInput()).thenReturn("1");
+        when(logInPageInterpreter.interpret("1")).thenReturn(new SimpleUser("some username", "some password"));
+
+        bibliotecaApplication = new BibliotecaApplication(welcomeDisplay, optionDisplay, consoleInput, simpleUserInterpreter);
+
+        bibliotecaApplication.startApplication(logInPageInterpreter);
+
+        verify(optionDisplay, times(1)).display();
+    }
 }

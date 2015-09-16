@@ -73,5 +73,9 @@ public class BibliotecaApplication {
             optionsDisplay = new Display(new LibrarianOptions().getOptions());
             interpreter = new LibrarianUserInterpreter(new Library(), consoleInput);
         }
+        else if(user.getClass() == SimpleUser.class) {
+            optionsDisplay = new Display(new SimpleUserOptions().getOptions());
+            interpreter = new SimpleUserInterpreter(new Library(), consoleInput);
+        }
     }
 }
