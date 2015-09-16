@@ -120,7 +120,7 @@ public class Library {
     public String checkedOutBooksStatus() {
         String bookCheckOutInfo = "";
         for(Book book : bookCheckOutDetails.keySet()) {
-            bookCheckOutInfo += book.bookInfo() + " is checked out by " +bookCheckOutDetails.get(book).userInfo();
+            bookCheckOutInfo += book.bookInfo() + " is checked out by " +bookCheckOutDetails.get(book).userInfo()+"\n";
         }
         return bookCheckOutInfo;
     }
