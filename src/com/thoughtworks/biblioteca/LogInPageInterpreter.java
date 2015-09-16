@@ -26,6 +26,7 @@ public class LogInPageInterpreter {
         String userName = consoleInput.getInput();
         new Display("Enter Password :").display();
         String password = consoleInput.getInput();
-        return null;
+        User user = library.logInUser(userName, password);
+        return user;
     }
 }

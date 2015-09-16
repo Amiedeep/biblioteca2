@@ -35,4 +35,13 @@ public class LogInPageInterpreterTest {
         assertNull(logInPageInterpreter.interpret("1"));
         assertEquals("Enter Library number :\n" + "Enter Password :\n", outputStream.toString());
     }
+
+    @Test
+    public void shouldReturnMeSimpleUserWhenIPassOneToInterpretMethodAndGiveValidSimpleUserCredentials() {
+        when(consoleInput.getInput()).thenReturn("111-2222", "abcd");
+        when(library.logInUser("111-2222", "abcd")).thenReturn(new SimpleUser("111-2222", "abcd"));
+
+        assertEquals(logInPageInterpreter.interpret("1").getClass(), SimpleUser.class);
+        assertEquals("Enter Library number :\n" + "Enter Password :\n", outputStream.toString());
+    }
 }
