@@ -69,5 +69,9 @@ public class BibliotecaApplication {
             optionsDisplay = new Display(new GuestUserOptions().getOptions());
             interpreter = new GuestUserInterpreter(new Library(), consoleInput);
         }
+        else if(user.getClass() == LibrarianUser.class) {
+            optionsDisplay = new Display(new LibrarianOptions().getOptions());
+            interpreter = new LibrarianUserInterpreter(new Library(), consoleInput);
+        }
     }
 }
