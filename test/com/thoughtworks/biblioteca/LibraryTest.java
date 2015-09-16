@@ -1,5 +1,8 @@
 package com.thoughtworks.biblioteca;
 
+import com.thoughtworks.users.GuestUser;
+import com.thoughtworks.users.LibrarianUser;
+import com.thoughtworks.users.SimpleUser;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -12,7 +15,7 @@ public class LibraryTest {
 
     @Before
     public void setUp() {
-        library = new Library();
+        library = new Library(new GuestUser());
     }
 
     @Test

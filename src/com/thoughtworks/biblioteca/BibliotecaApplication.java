@@ -1,6 +1,13 @@
 //This class starts the biblioteca application.
 package com.thoughtworks.biblioteca;
 
+import com.thoughtworks.interpreters.*;
+import com.thoughtworks.options.*;
+import com.thoughtworks.users.GuestUser;
+import com.thoughtworks.users.LibrarianUser;
+import com.thoughtworks.users.SimpleUser;
+import com.thoughtworks.users.User;
+
 import java.util.Scanner;
 
 public class BibliotecaApplication {
@@ -20,7 +27,7 @@ public class BibliotecaApplication {
     public static void main(String[] args) {
         Options options = new LogInOptions();
         String welcomeMessage = "Hey! Welcome to biblioteca";
-        Library library = new Library();
+        Library library = new Library(new GuestUser());
         ConsoleInput consoleInput = new ConsoleInput(new Scanner(System.in));
         BibliotecaApplication bibliotecaApplication = new BibliotecaApplication(new Display(welcomeMessage),
                                                                                 new Display(options.getOptions()),
@@ -66,16 +73,19 @@ public class BibliotecaApplication {
             getLoginPageOptionAndInterpret(logInPageInterpreter);
         }
         else if(user.getClass() == GuestUser.class) {
+            Library library = new Library(user);
             optionsDisplay = new Display(new GuestUserOptions().getOptions());
-            interpreter = new GuestUserInterpreter(new Library(), consoleInput);
+            interpreter = new GuestUserInterpreter(library, consoleInput);
         }
         else if(user.getClass() == LibrarianUser.class) {
+            Library library = new Library(user);
             optionsDisplay = new Display(new LibrarianOptions().getOptions());
-            interpreter = new LibrarianUserInterpreter(new Library(), consoleInput);
+            interpreter = new LibrarianUserInterpreter(library, consoleInput);
         }
         else if(user.getClass() == SimpleUser.class) {
+            Library library = new Library(user);
             optionsDisplay = new Display(new SimpleUserOptions().getOptions());
-            interpreter = new SimpleUserInterpreter(new Library(), consoleInput);
+            interpreter = new SimpleUserInterpreter(library, consoleInput);
         }
     }
 }

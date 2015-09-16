@@ -1,5 +1,10 @@
 package com.thoughtworks.biblioteca;
 
+import com.thoughtworks.interpreters.GuestUserInterpreter;
+import com.thoughtworks.interpreters.LogInPageInterpreter;
+import com.thoughtworks.users.GuestUser;
+import com.thoughtworks.users.LibrarianUser;
+import com.thoughtworks.users.SimpleUser;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -25,7 +30,7 @@ public class BibliotecaApplicationTest {
         welcomeDisplay = new Display("welcome display");
         optionDisplay = new Display("Display display");
         consoleInput = new ConsoleInput(new Scanner(System.in));
-        guestUserInterpreter = new GuestUserInterpreter(new Library(), consoleInput);
+        guestUserInterpreter = new GuestUserInterpreter(new Library(new GuestUser()), consoleInput);
         logInPageInterpreter = mock(LogInPageInterpreter.class);
     }
 

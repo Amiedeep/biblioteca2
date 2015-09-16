@@ -1,6 +1,10 @@
 //Library contains books
 package com.thoughtworks.biblioteca;
 
+import com.thoughtworks.users.LibrarianUser;
+import com.thoughtworks.users.SimpleUser;
+import com.thoughtworks.users.User;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -15,6 +19,11 @@ public class Library {
                                                                      new Movie("3 idiots", 2010, "Amandeep Singh", 10)));
     private List<Movie> checkedOutMovies = new ArrayList<>(Arrays.asList(new Movie("Aashiqi", 1947, "Dharmendra", 3)));
     private List<User> listOfUsers = new ArrayList<>(Arrays.asList(new SimpleUser("111-2222", "abcd"), new LibrarianUser("222-1111", "dcba")));
+    private User currentUser;
+
+    public Library(User currentUser) {
+        this.currentUser = currentUser;
+    }
 
     public String listBooks() {
         String bookList = "List of books we have is: \n";
