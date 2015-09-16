@@ -1,9 +1,8 @@
 package com.thoughtworks.users;
 
-import com.thoughtworks.users.GuestUser;
-import com.thoughtworks.users.User;
 import org.junit.Test;
 
+import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertTrue;
 
 public class GuestUserTest {
@@ -15,5 +14,11 @@ public class GuestUserTest {
         user = new GuestUser();
 
         assertTrue(user.logIn("some username", "some password"));
+    }
+
+    @Test
+    public void shouldReturnMeUserInfoWhenICallUserInfoMethod() {
+        user = new GuestUser();
+        assertEquals(null, user.userInfo());
     }
 }

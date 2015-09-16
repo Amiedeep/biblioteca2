@@ -1,10 +1,9 @@
 package com.thoughtworks.users;
 
-import com.thoughtworks.users.LibrarianUser;
-import com.thoughtworks.users.User;
 import org.junit.Before;
 import org.junit.Test;
 
+import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertFalse;
 import static junit.framework.TestCase.assertTrue;
 
@@ -40,5 +39,10 @@ public class LibrarianUserTest {
     @Test
     public void shouldReturnMeTrueWhenUserNameAndPasswordMatch() {
         assertTrue(user.logIn("222-1111", "dcba"));
+    }
+
+    @Test
+    public void shouldReturnMeUserInfoWhenICallUserInfoMethod() {
+        assertEquals("222-1111", user.userInfo());
     }
 }
