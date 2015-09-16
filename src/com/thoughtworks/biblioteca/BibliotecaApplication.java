@@ -18,7 +18,7 @@ public class BibliotecaApplication {
     }
 
     public static void main(String[] args) {
-        Options options = new SimpleUserOptions();
+        Options options = new LogInOptions();
         String welcomeMessage = "Hey! Welcome to biblioteca";
         Library library = new Library();
         ConsoleInput consoleInput = new ConsoleInput(new Scanner(System.in));
@@ -26,11 +26,11 @@ public class BibliotecaApplication {
                                                                                 new Display(options.getOptions()),
                                                                                 consoleInput,
                                                                                 new SimpleUserInterpreter(library, consoleInput));
+        bibliotecaApplication.startApplication(new LogInPageInterpreter(library, consoleInput));
         bibliotecaApplication.start();
     }
 
     public void start() {
-        printWelcomeMessage();
         printMenuOptions();
         takeUserInputAndInterpret();
     }
