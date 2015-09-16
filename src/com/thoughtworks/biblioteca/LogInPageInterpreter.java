@@ -20,6 +20,9 @@ public class LogInPageInterpreter {
             case "2" :
                 user = new GuestUser();
                 break;
+
+            default :
+                System.exit(0);
         }
         return user;
     }

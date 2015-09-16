@@ -1,7 +1,9 @@
 package com.thoughtworks.biblioteca;
 
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.contrib.java.lang.system.ExpectedSystemExit;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -17,6 +19,9 @@ public class LogInPageInterpreterTest {
     private ConsoleInput consoleInput;
     private Library library;
     private ByteArrayOutputStream outputStream;
+
+    @Rule
+    public ExpectedSystemExit exit = ExpectedSystemExit.none();
 
     @Before
     public void setUp() {
@@ -57,5 +62,12 @@ public class LogInPageInterpreterTest {
     @Test
     public void shouldReturnMeGuestUserWhenIPassTwoToInterpretMethod() {
         assertEquals(logInPageInterpreter.interpret("2").getClass(), GuestUser.class);
+    }
+
+    @Test
+    public void shouldExitTheSystemWhenIPassDefaultChoiceToInterpretMethod() {
+        exit.expectSystemExitWithStatus(0);
+
+        logInPageInterpreter.interpret("6");
     }
 }
