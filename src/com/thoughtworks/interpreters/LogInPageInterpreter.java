@@ -1,5 +1,11 @@
 //This class interprets and return some concrete object against logIn page options.
-package com.thoughtworks.biblioteca;
+package com.thoughtworks.interpreters;
+
+import com.thoughtworks.biblioteca.ConsoleInput;
+import com.thoughtworks.biblioteca.Display;
+import com.thoughtworks.biblioteca.Library;
+import com.thoughtworks.users.GuestUser;
+import com.thoughtworks.users.User;
 
 public class LogInPageInterpreter {
 

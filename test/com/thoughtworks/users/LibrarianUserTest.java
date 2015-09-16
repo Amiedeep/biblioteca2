@@ -1,18 +1,20 @@
-package com.thoughtworks.biblioteca;
+package com.thoughtworks.users;
 
+import com.thoughtworks.users.LibrarianUser;
+import com.thoughtworks.users.User;
 import org.junit.Before;
 import org.junit.Test;
 
 import static junit.framework.TestCase.assertFalse;
 import static junit.framework.TestCase.assertTrue;
 
-public class SimpleUserTest {
+public class LibrarianUserTest {
 
     private User user;
 
     @Before
     public void setUp() {
-        user = new SimpleUser("111-2222", "abcd");
+        user = new LibrarianUser("222-1111", "dcba");
     }
 
     @Test
@@ -31,12 +33,12 @@ public class SimpleUserTest {
     }
 
     @Test
-    public void shouldReturnMeTrueWhenUserNameAndPasswordMatch() {
-        assertTrue(user.logIn("111-2222", "abcd"));
+    public void shouldReturnMeFalseWhenUserNameAndPasswordAreInvalid() {
+        assertFalse(user.logIn("222-4444", "dcab"));
     }
 
     @Test
-    public void shouldReturnMeFalseWhenUserNameAndPasswordAreInvalid() {
-        assertFalse(user.logIn("111-3333", "acd"));
+    public void shouldReturnMeTrueWhenUserNameAndPasswordMatch() {
+        assertTrue(user.logIn("222-1111", "dcba"));
     }
 }

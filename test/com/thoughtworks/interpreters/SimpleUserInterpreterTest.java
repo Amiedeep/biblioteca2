@@ -1,5 +1,8 @@
-package com.thoughtworks.biblioteca;
+package com.thoughtworks.interpreters;
 
+import com.thoughtworks.biblioteca.ConsoleInput;
+import com.thoughtworks.biblioteca.Library;
+import com.thoughtworks.interpreters.SimpleUserInterpreter;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;

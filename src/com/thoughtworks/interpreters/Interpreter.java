@@ -1,4 +1,8 @@
-package com.thoughtworks.biblioteca;
+package com.thoughtworks.interpreters;
+
+import com.thoughtworks.biblioteca.ConsoleInput;
+import com.thoughtworks.biblioteca.Display;
+import com.thoughtworks.biblioteca.Library;
 
 public abstract class Interpreter {
 

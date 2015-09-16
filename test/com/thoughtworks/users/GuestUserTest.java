@@ -1,5 +1,7 @@
-package com.thoughtworks.biblioteca;
+package com.thoughtworks.users;
 
+import com.thoughtworks.users.GuestUser;
+import com.thoughtworks.users.User;
 import org.junit.Test;
 
 import static junit.framework.TestCase.assertTrue;

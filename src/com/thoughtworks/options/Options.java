@@ -1,5 +1,5 @@
 //This class has option list to choose from for user
-package com.thoughtworks.biblioteca;
+package com.thoughtworks.options;
 
 import java.util.List;
 

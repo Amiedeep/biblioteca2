@@ -1,8 +1,12 @@
-package com.thoughtworks.biblioteca;
+package com.thoughtworks.interpreters;
 
-public class LibrarianUserInterpreter extends Interpreter {
+import com.thoughtworks.biblioteca.ConsoleInput;
+import com.thoughtworks.biblioteca.Display;
+import com.thoughtworks.biblioteca.Library;
 
-    public LibrarianUserInterpreter(Library library, ConsoleInput consoleInput) {
+public class GuestUserInterpreter extends Interpreter {
+
+    public GuestUserInterpreter(Library library, ConsoleInput consoleInput) {
         super(library, consoleInput);
     }
 
@@ -19,12 +23,6 @@ public class LibrarianUserInterpreter extends Interpreter {
                 checkOutMovie();
                 break;
             case "4":
-                checkOutBook();
-                break;
-            case "5":
-                returnBook();
-                break;
-            case "7":
                 System.exit(0);
                 break;
             default:

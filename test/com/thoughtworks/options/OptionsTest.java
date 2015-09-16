@@ -1,5 +1,7 @@
-package com.thoughtworks.biblioteca;
+package com.thoughtworks.options;
 
+import com.thoughtworks.options.Options;
+import com.thoughtworks.options.SimpleUserOptions;
 import org.junit.Test;
 
 import static junit.framework.TestCase.assertEquals;
