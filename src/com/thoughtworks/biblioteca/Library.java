@@ -5,20 +5,20 @@ import com.thoughtworks.users.LibrarianUser;
 import com.thoughtworks.users.SimpleUser;
 import com.thoughtworks.users.User;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class Library {
 
     private List<Book> listOfBooks = new ArrayList<>(Arrays.asList(new Book("scjp", "kathy sierra", 1990),
                                                                    new Book("head first java", "someone", 2014)));
-    private List<Book> checkedOutBooks = new ArrayList<>(Arrays.asList(new Book("Do rajya", "chetan bhagat", 1767)));
+    private List<Book> checkedOutBooks = new ArrayList<>();
     private List<Movie> listOfMovies = new ArrayList<>(Arrays.asList(new Movie("sholay", 1981, "Shakti kapoor", 10),
                                                                      new Movie("sehansha", 1990, "Sunny deol", 9),
                                                                      new Movie("3 idiots", 2010, "Amandeep Singh", 10)));
     private List<Movie> checkedOutMovies = new ArrayList<>(Arrays.asList(new Movie("Aashiqi", 1947, "Dharmendra", 3)));
     private List<User> listOfUsers = new ArrayList<>(Arrays.asList(new SimpleUser("111-2222", "abcd"), new LibrarianUser("222-1111", "dcba")));
+
+    private HashMap<Book, User> bookCheckOutDetails = new HashMap<>();
     private User currentUser;
 
     public Library(User currentUser) {
@@ -65,6 +65,7 @@ public class Library {
         for(Book book : listOfBooks) {
             if(book.compareBookNameWith(bookName)) {
                 checkOutBook(book);
+                bookCheckOutDetails.put(book, currentUser);
                 return "Thank You! Enjoy the book";
             }
         }
@@ -80,6 +81,7 @@ public class Library {
         for(Book book : checkedOutBooks) {
             if(book.compareBookNameWith(bookName)) {
                 returnBook(book);
+                bookCheckOutDetails.remove(book);
                 return "Thank you for returning the book";
             }
         }
@@ -113,5 +115,9 @@ public class Library {
             }
         }
         return null;
+    }
+
+    public String checkedOutBooksStatus() {
+        return "";
     }
 }

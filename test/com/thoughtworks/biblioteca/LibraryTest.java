@@ -66,7 +66,8 @@ public class LibraryTest {
 
     @Test
     public void shouldReturnMeTrueWhenIPassExistingBookNameToReturnBookMethod() {
-        assertEquals("Thank you for returning the book", library.returnBook("Do rajya"));
+        library.checkOutBook("scjp");
+        assertEquals("Thank you for returning the book", library.returnBook("scjp"));
     }
 
     @Test
@@ -112,5 +113,10 @@ public class LibraryTest {
     @Test
     public void shouldReturnMeLibrarianUserWhenIPassValidLibrarianUserUsernameAndPasswordToLogInUserMethod() {
         assertEquals(LibrarianUser.class, library.logInUser("222-1111", "dcba").getClass());
+    }
+
+    @Test
+    public void shouldReturnMeEmptyStringWhenThereIsNoBookCheckedOutAndICallCheckedOutBooksStatusMethod() {
+        assertEquals("", library.checkedOutBooksStatus());
     }
 }
