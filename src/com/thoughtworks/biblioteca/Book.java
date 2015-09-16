@@ -21,4 +21,8 @@ public class Book {
     public boolean compareBookNameWith(String thatName) {
         return name.equals(thatName);
     }
+
+    public String bookInfo() {
+        return name+" authored by "+author+" published on "+yearPublished;
+    }
 }

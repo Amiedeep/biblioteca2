@@ -36,4 +36,11 @@ public class BookTest {
 
         assertEquals(true, book.compareBookNameWith("harry potter"));
     }
+
+    @Test
+    public void shouldReturnMeBookInfoInFormattedOrderWhenICallBookInfoMethod() {
+        book = new Book("some book", "some author", 1947);
+
+        assertEquals("some book authored by some author published on 1947", book.bookInfo());
+    }
 }
