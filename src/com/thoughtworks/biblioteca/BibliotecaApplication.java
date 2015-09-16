@@ -65,5 +65,9 @@ public class BibliotecaApplication {
             printMenuOptions();
             getLoginPageOptionAndInterpret(logInPageInterpreter);
         }
+        else if(user.getClass() == GuestUser.class) {
+            optionsDisplay = new Display(new GuestUserOptions().getOptions());
+            interpreter = new GuestUserInterpreter(new Library(), consoleInput);
+        }
     }
 }
