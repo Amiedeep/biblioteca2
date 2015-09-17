@@ -1,38 +1,36 @@
 //It takes the input, Interpret it.
 package com.thoughtworks.interpreters;
 
+import com.thoughtworks.Operations.*;
 import com.thoughtworks.biblioteca.ConsoleInput;
-import com.thoughtworks.biblioteca.Display;
 import com.thoughtworks.biblioteca.Library;
 
-public class SimpleUserInterpreter extends Interpreter {
+public class SimpleUserInterpreter implements Interpreter {
+
+    private Library library;
+    private ConsoleInput consoleInput;
 
     public SimpleUserInterpreter(Library library, ConsoleInput consoleInput) {
-        super(library, consoleInput);
+        this.library = library;
+        this.consoleInput = consoleInput;
     }
 
-    public void interpret(String input) {
-        Display invalidOption = new Display("Select a valid option!");
+    public Operation interpret(String input) {
         switch (input) {
             case "1":
-                displayAllBooks();
-                break;
+                return new ListBooksOperation(library);
             case "2":
-                checkOutBook();
-                break;
+                return new CheckOutBookOperation(library, consoleInput);
             case "3":
-                System.exit(0);
+                return new ExitOperation();
             case "4":
-                returnBook();
-                break;
+                return new ReturnBookOperation(library, consoleInput);
             case "5":
-                displayAllMovies();
-                break;
+                return new ListMoviesOperation(library);
             case "6":
-                checkOutMovie();
-                break;
+                return new CheckOutMovieOperation(library, consoleInput);
             default:
-                invalidOption.display();
+                return new InvalidOperation();
         }
     }
 }

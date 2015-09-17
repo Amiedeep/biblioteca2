@@ -1,5 +1,6 @@
 package com.thoughtworks.interpreters;
 
+import com.thoughtworks.Operations.*;
 import com.thoughtworks.biblioteca.ConsoleInput;
 import com.thoughtworks.biblioteca.Library;
 import com.thoughtworks.interpreters.GuestUserInterpreter;
@@ -21,79 +22,52 @@ public class GuestUserInterpreterTest {
     private GuestUserInterpreter guestUserInterpreter;
     private Library library;
     private ConsoleInput consoleInput;
-    private ByteArrayOutputStream outputStream;
-
-    @Rule
-    public final ExpectedSystemExit exit = ExpectedSystemExit.none();
 
     @Before
     public void setUp() {
         library = mock(Library.class);
         consoleInput = mock(ConsoleInput.class);
-        outputStream = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outputStream));
     }
 
     @Test
-    public void shouldDisplayTheMessageLibraryReturnedWhenIPassOneInInterpretMethod() {
+    public void shouldReturnListBookOperationWhenIPassOneToInterpretMethod() {
         guestUserInterpreter = new GuestUserInterpreter(library, consoleInput);
 
-        when(library.listBooks()).thenReturn("Book name");
-
-        guestUserInterpreter.interpret("1");
-
-        assertEquals("Book name\n", outputStream.toString());
+        assertEquals(ListBooksOperation.class, guestUserInterpreter.interpret("1").getClass());
     }
 
     @Test
-    public void shouldDisplayTheMessageLibraryReturnedWhenIPassTwoInInterpretMethod() {
+    public void shouldReturnListMoviesOperationWhenIPassTwoToInterpretMethod() {
         guestUserInterpreter = new GuestUserInterpreter(library, consoleInput);
 
-        when(library.listMovies()).thenReturn("Movie name");
-
-        guestUserInterpreter.interpret("2");
-
-        assertEquals("Movie name\n", outputStream.toString());
+        assertEquals(ListMoviesOperation.class, guestUserInterpreter.interpret("2").getClass());
     }
 
     @Test
-    public void shouldDisplayTheInvalidMessageWhenIPassSomeInvalidNumberInInterpretMethod() {
+    public void shouldReturnCheckOutMovieOperationWhenIPassThreeToInterpretMethod() {
         guestUserInterpreter = new GuestUserInterpreter(library, consoleInput);
 
-        guestUserInterpreter.interpret("8");
-
-        assertEquals("Select a valid option!\n", outputStream.toString());
+        assertEquals(CheckOutMovieOperation.class, guestUserInterpreter.interpret("3").getClass());
     }
 
     @Test
-    public void shouldDisplayTheInvalidMessageWhenIPassSomeInvalidInputInInterpretMethod() {
+    public void shouldReturnExitOperationWhenIPassFourToInterpretMethod() {
         guestUserInterpreter = new GuestUserInterpreter(library, consoleInput);
 
-        guestUserInterpreter.interpret("abc");
-
-        assertEquals("Select a valid option!\n", outputStream.toString());
+        assertEquals(ExitOperation.class, guestUserInterpreter.interpret("4").getClass());
     }
 
     @Test
-    public void shouldExitTheSystemWhenUserChooseQuitOption() {
+    public void shouldReturnInvalidOperationWhenIPassEightToInterpretMethod() {
         guestUserInterpreter = new GuestUserInterpreter(library, consoleInput);
 
-        exit.expectSystemExitWithStatus(0);
-
-        guestUserInterpreter.interpret("4");
+        assertEquals(InvalidOperation.class, guestUserInterpreter.interpret("8").getClass());
     }
 
     @Test
-    public void shouldCallTheCheckoutMovieMethodOfLibraryWhenIPassThreeInInterpretMethod() {
+    public void shouldReturnInvalidOperationWhenIPassAbcToInterpretMethod() {
         guestUserInterpreter = new GuestUserInterpreter(library, consoleInput);
 
-        when(consoleInput.getInput()).thenReturn("some movie");
-
-        guestUserInterpreter.interpret("3");
-
-        assertEquals("Enter movie name to checkout\n", outputStream.toString());
-
-        verify(consoleInput, times(1)).getInput();
-        verify(library, times(1)).checkOutMovie("some movie");
+        assertEquals(InvalidOperation.class, guestUserInterpreter.interpret("abc").getClass());
     }
 }

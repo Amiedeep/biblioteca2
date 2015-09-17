@@ -1,5 +1,7 @@
 package com.thoughtworks.biblioteca;
 
+import com.thoughtworks.Operations.ExitOperation;
+import com.thoughtworks.Operations.ListBooksOperation;
 import com.thoughtworks.interpreters.GuestUserInterpreter;
 import com.thoughtworks.interpreters.LogInPageInterpreter;
 import com.thoughtworks.users.GuestUser;
@@ -57,25 +59,36 @@ public class BibliotecaApplicationTest {
     @Test
     public void shouldTakeTheUserInputAndPerformOperationWhenICallTakeUserInputAndInterpretMethod() {
         consoleInput = mock(ConsoleInput.class);
+        guestUserInterpreter = mock(GuestUserInterpreter.class);
         bibliotecaApplication = new BibliotecaApplication(welcomeDisplay, optionDisplay, consoleInput, guestUserInterpreter);
 
         when(consoleInput.getInput()).thenReturn("1", "4");
+        when(guestUserInterpreter.interpret("1")).thenReturn(new ListBooksOperation(new Library(new GuestUser())));
+        when(guestUserInterpreter.interpret("4")).thenReturn(new ExitOperation());
 
         exit.expectSystemExitWithStatus(0);
 
         bibliotecaApplication.takeUserInputAndInterpret();
+
+        verify(guestUserInterpreter, times(1)).interpret("1");
+        verify(guestUserInterpreter, times(1)).interpret("4");
     }
 
     @Test
     public void shouldVerifyIfAllMethodsAreCalledWhenICallStartMethod() {
         consoleInput = mock(ConsoleInput.class);
+        guestUserInterpreter = mock(GuestUserInterpreter.class);
         bibliotecaApplication = new BibliotecaApplication(welcomeDisplay, optionDisplay, consoleInput, guestUserInterpreter);
 
         when(consoleInput.getInput()).thenReturn("4");
+        when(guestUserInterpreter.interpret("4")).thenReturn(new ExitOperation());
 
         exit.expectSystemExitWithStatus(0);
 
         bibliotecaApplication.start();
+
+        verify(guestUserInterpreter, times(1)).interpret("4");
+        verify(consoleInput, times(1)).getInput();
     }
 
     @Test

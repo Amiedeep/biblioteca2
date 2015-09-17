@@ -1,32 +1,32 @@
+//This is interpreter against guest user
 package com.thoughtworks.interpreters;
 
+import com.thoughtworks.Operations.*;
 import com.thoughtworks.biblioteca.ConsoleInput;
-import com.thoughtworks.biblioteca.Display;
 import com.thoughtworks.biblioteca.Library;
 
-public class GuestUserInterpreter extends Interpreter {
+public class GuestUserInterpreter implements Interpreter {
+
+    private Library library;
+    private ConsoleInput consoleInput;
 
     public GuestUserInterpreter(Library library, ConsoleInput consoleInput) {
-        super(library, consoleInput);
+        this.library = library;
+        this.consoleInput = consoleInput;
     }
 
-    public void interpret(String input) {
-        Display invalidOption = new Display("Select a valid option!");
+    public Operation interpret(String input) {
         switch (input) {
             case "1":
-                displayAllBooks();
-                break;
+                return new ListBooksOperation(library);
             case "2":
-                displayAllMovies();
-                break;
+                return new ListMoviesOperation(library);
             case "3":
-                checkOutMovie();
-                break;
+                return new CheckOutMovieOperation(library, consoleInput);
             case "4":
-                System.exit(0);
-                break;
+                return new ExitOperation();
             default:
-                invalidOption.display();
+                return new InvalidOperation();
         }
     }
 }

@@ -1,142 +1,86 @@
 package com.thoughtworks.interpreters;
 
+import com.thoughtworks.Operations.*;
 import com.thoughtworks.biblioteca.ConsoleInput;
 import com.thoughtworks.biblioteca.Library;
-import com.thoughtworks.interpreters.LibrarianUserInterpreter;
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.contrib.java.lang.system.ExpectedSystemExit;
-
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
 
 import static junit.framework.TestCase.assertEquals;
 import static org.mockito.Mockito.*;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
 
 public class LibrarianUserInterpreterTest {
 
     private LibrarianUserInterpreter librarianUserInterpreter;
     private Library library;
     private ConsoleInput consoleInput;
-    private ByteArrayOutputStream outputStream;
-
-    @Rule
-    public final ExpectedSystemExit exit = ExpectedSystemExit.none();
 
     @Before
     public void setUp() {
         library = mock(Library.class);
         consoleInput = mock(ConsoleInput.class);
-        outputStream = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outputStream));
     }
 
     @Test
-    public void shouldDisplayTheMessageLibraryReturnedWhenIPassOneInInterpretMethod() {
+    public void shouldReturnListBookOperationWhenIPassOneToInterpretMethod() {
         librarianUserInterpreter = new LibrarianUserInterpreter(library, consoleInput);
 
-        when(library.listBooks()).thenReturn("Book name");
-
-        librarianUserInterpreter.interpret("1");
-
-        assertEquals("Book name\n", outputStream.toString());
+        assertEquals(ListBooksOperation.class, librarianUserInterpreter.interpret("1").getClass());
     }
 
     @Test
-    public void shouldDisplayTheMessageLibraryReturnedWhenIPassTwoInInterpretMethod() {
+    public void shouldReturnListMoviesOperationWhenIPassTwoToInterpretMethod() {
         librarianUserInterpreter = new LibrarianUserInterpreter(library, consoleInput);
 
-        when(library.listMovies()).thenReturn("Movie name");
-
-        librarianUserInterpreter.interpret("2");
-
-        assertEquals("Movie name\n", outputStream.toString());
+        assertEquals(ListMoviesOperation.class, librarianUserInterpreter.interpret("2").getClass());
     }
 
     @Test
-    public void shouldCallTheCheckoutMethodOfLibraryWhenIPassFourInInterpretMethodAndPrintSomeReturnedMessage() {
+    public void shouldReturnCheckOutMovieOperationWhenIPassThreeToInterpretMethod() {
         librarianUserInterpreter = new LibrarianUserInterpreter(library, consoleInput);
 
-        when(consoleInput.getInput()).thenReturn("some book");
-        when(library.checkOutBook("some book")).thenReturn("Some book message");
-
-        librarianUserInterpreter.interpret("4");
-
-        assertEquals("Enter book name to checkout\nSome book message\n", outputStream.toString());
-
-        verify(consoleInput, times(1)).getInput();
-        verify(library, times(1)).checkOutBook("some book");
+        assertEquals(CheckOutMovieOperation.class, librarianUserInterpreter.interpret("3").getClass());
     }
 
     @Test
-    public void shouldDisplayTheInvalidMessageWhenIPassSomeInvalidNumberInInterpretMethod() {
+    public void shouldReturnCheckOutBookOperationWhenIPassFourToInterpretMethod() {
         librarianUserInterpreter = new LibrarianUserInterpreter(library, consoleInput);
 
-        librarianUserInterpreter.interpret("8");
-
-        assertEquals("Select a valid option!\n", outputStream.toString());
+        assertEquals(CheckOutBookOperation.class, librarianUserInterpreter.interpret("4").getClass());
     }
 
     @Test
-    public void shouldDisplayTheInvalidMessageWhenIPassSomeInvalidInputInInterpretMethod() {
+    public void shouldReturnReturnBookOperationWhenIPassFiveToInterpretMethod() {
         librarianUserInterpreter = new LibrarianUserInterpreter(library, consoleInput);
 
-        librarianUserInterpreter.interpret("abc");
-
-        assertEquals("Select a valid option!\n", outputStream.toString());
+        assertEquals(ReturnBookOperation.class, librarianUserInterpreter.interpret("5").getClass());
     }
 
     @Test
-    public void shouldExitTheSystemWhenUserChooseQuitOption() {
+    public void shouldReturnCheckedOutBooksStatusOperationWhenIPassSixToInterpretMethod() {
         librarianUserInterpreter = new LibrarianUserInterpreter(library, consoleInput);
 
-        exit.expectSystemExitWithStatus(0);
-
-        librarianUserInterpreter.interpret("7");
+        assertEquals(CheckedOutBooksStatusOperation.class, librarianUserInterpreter.interpret("6").getClass());
     }
 
     @Test
-    public void shouldCallTheReturnBookMethodOfLibraryWhenIPassFiveInInterpretMethodAndPrintSomeReturnedMessage() {
+    public void shouldReturnExitOperationWhenIPassSevenToInterpretMethod() {
         librarianUserInterpreter = new LibrarianUserInterpreter(library, consoleInput);
 
-        when(consoleInput.getInput()).thenReturn("some book");
-        when(library.returnBook("some book")).thenReturn("some book message");
-
-        librarianUserInterpreter.interpret("5");
-
-        assertEquals("Enter book name to return\nsome book message\n", outputStream.toString());
-
-        verify(consoleInput, times(1)).getInput();
-        verify(library, times(1)).returnBook("some book");
+        assertEquals(ExitOperation.class, librarianUserInterpreter.interpret("7").getClass());
     }
 
     @Test
-    public void shouldCallTheCheckoutMovieMethodOfLibraryWhenIPassThreeInInterpretMethod() {
+    public void shouldReturnInvalidOperationWhenIPassEightToInterpretMethod() {
         librarianUserInterpreter = new LibrarianUserInterpreter(library, consoleInput);
 
-        when(consoleInput.getInput()).thenReturn("some movie");
-
-        librarianUserInterpreter.interpret("3");
-
-        assertEquals("Enter movie name to checkout\n", outputStream.toString());
-
-        verify(consoleInput, times(1)).getInput();
-        verify(library, times(1)).checkOutMovie("some movie");
+        assertEquals(InvalidOperation.class, librarianUserInterpreter.interpret("8").getClass());
     }
 
     @Test
-    public void shouldDisplayTheCheckedOutBooksStatusWhenIGiveSixAsInputToInterpretMethod() {
+    public void shouldReturnInvalidOperationWhenIPassAbcToInterpretMethod() {
         librarianUserInterpreter = new LibrarianUserInterpreter(library, consoleInput);
 
-        when(library.checkedOutBooksStatus()).thenReturn("some book status");
-
-        librarianUserInterpreter.interpret("6");
-
-        assertEquals("some book status\n", outputStream.toString());
-
-        verify(library, times(1)).checkedOutBooksStatus();
+        assertEquals(InvalidOperation.class, librarianUserInterpreter.interpret("abc").getClass());
     }
 }

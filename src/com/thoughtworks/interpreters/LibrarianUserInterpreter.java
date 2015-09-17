@@ -1,41 +1,37 @@
 package com.thoughtworks.interpreters;
 
+import com.thoughtworks.Operations.*;
 import com.thoughtworks.biblioteca.ConsoleInput;
-import com.thoughtworks.biblioteca.Display;
 import com.thoughtworks.biblioteca.Library;
 
-public class LibrarianUserInterpreter extends Interpreter {
+public class LibrarianUserInterpreter implements Interpreter {
+
+    private Library library;
+    private ConsoleInput consoleInput;
 
     public LibrarianUserInterpreter(Library library, ConsoleInput consoleInput) {
-        super(library, consoleInput);
+        this.library = library;
+        this.consoleInput = consoleInput;
     }
 
-    public void interpret(String input) {
-        Display invalidOption = new Display("Select a valid option!");
+    public Operation interpret(String input) {
         switch (input) {
             case "1":
-                displayAllBooks();
-                break;
+                return new ListBooksOperation(library);
             case "2":
-                displayAllMovies();
-                break;
+                return new ListMoviesOperation(library);
             case "3":
-                checkOutMovie();
-                break;
+                return new CheckOutMovieOperation(library, consoleInput);
             case "4":
-                checkOutBook();
-                break;
+                return new CheckOutBookOperation(library, consoleInput);
             case "5":
-                returnBook();
-                break;
+                return new ReturnBookOperation(library, consoleInput);
             case "6":
-                checkedOutBooksStatus();
-                break;
+                return new CheckedOutBooksStatusOperation(library);
             case "7":
-                System.exit(0);
-                break;
+                return new ExitOperation();
             default:
-                invalidOption.display();
+                return new InvalidOperation();
         }
     }
 }

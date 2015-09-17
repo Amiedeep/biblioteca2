@@ -2,7 +2,6 @@ package com.thoughtworks.interpreters;
 
 import com.thoughtworks.biblioteca.ConsoleInput;
 import com.thoughtworks.biblioteca.Library;
-import com.thoughtworks.interpreters.LogInPageInterpreter;
 import com.thoughtworks.users.GuestUser;
 import com.thoughtworks.users.LibrarianUser;
 import com.thoughtworks.users.SimpleUser;
