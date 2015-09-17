@@ -130,4 +130,10 @@ public class Library {
     public void setUser(User user) {
         this.currentUser = user;
     }
+
+    public String getUserInfo() {
+        String userInfo = currentUser.getUserHeaders();
+        userInfo += currentUser.userInfoToDisplay();
+        return userInfo;
+    }
 }

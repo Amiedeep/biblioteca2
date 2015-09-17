@@ -136,4 +136,15 @@ public class LibraryTest {
                           "head first java authored by someone published on 2014 is checked out by some user\n";
         assertEquals(expected, library.checkedOutBooksStatus());
     }
+
+    @Test
+    public void shouldReturnMeTheUserInfoInFormattedOrderWhenICallGetUserInfoMethod() {
+        library = new Library(new SimpleUser("some user", "some password", "Amie Deep", "Aman@pathashala.com", 523743276527l));
+
+        String expected = String.format("%-40s %-40s %-40s %-40s\n", "library Number", "name", "email", "phoneNumber") +
+                          String.format("%-40s %-40s %-40s %-40s\n", "some user", "Amie Deep", "Aman@pathashala.com", "523743276527");
+
+
+        assertEquals(expected, library.getUserInfo());
+    }
 }
