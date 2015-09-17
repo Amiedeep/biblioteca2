@@ -126,4 +126,17 @@ public class LibrarianUserInterpreterTest {
         verify(consoleInput, times(1)).getInput();
         verify(library, times(1)).checkOutMovie("some movie");
     }
+
+    @Test
+    public void shouldDisplayTheCheckedOutBooksStatusWhenIGiveSixAsInputToInterpretMethod() {
+        librarianUserInterpreter = new LibrarianUserInterpreter(library, consoleInput);
+
+        when(library.checkedOutBooksStatus()).thenReturn("some book status");
+
+        librarianUserInterpreter.interpret("6");
+
+        assertEquals("some book status\n", outputStream.toString());
+
+        verify(library, times(1)).checkedOutBooksStatus();
+    }
 }

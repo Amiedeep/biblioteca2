@@ -28,6 +28,9 @@ public class LibrarianUserInterpreter extends Interpreter {
             case "5":
                 returnBook();
                 break;
+            case "6":
+                checkedOutBooksStatus();
+                break;
             case "7":
                 System.exit(0);
                 break;

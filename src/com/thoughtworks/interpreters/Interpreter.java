@@ -44,5 +44,10 @@ public abstract class Interpreter {
         new Display(bookList).display();
     }
 
+    public void checkedOutBooksStatus() {
+        String checkedOutInfo = library.checkedOutBooksStatus();
+        new Display(checkedOutInfo).display();
+    }
+
     public abstract void interpret(String input);
 }
