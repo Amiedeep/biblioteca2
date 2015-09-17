@@ -1,6 +1,7 @@
 //This class starts the biblioteca application.
 package com.thoughtworks.biblioteca;
 
+import com.thoughtworks.Operations.LogOutOperation;
 import com.thoughtworks.Operations.Operation;
 import com.thoughtworks.interpreters.*;
 import com.thoughtworks.options.*;
@@ -51,8 +52,16 @@ public class BibliotecaApplication {
             String option = consoleInput.getInput();
             Operation operation = interpreter.interpret(option);
             operation.executeOperation();
+            if(operation.getClass() == LogOutOperation.class) {
+                optionsDisplay = new Display(new LogInOptions().getOptions());
+                printMenuOptions();
+                break;
+            }
             printMenuOptions();
         }
+        library.setUser(new GuestUser());
+        getLoginPageOptionAndInterpret(new LogInPageInterpreter(library, consoleInput));
+        start();
     }
 
     public void printMenuOptions() {

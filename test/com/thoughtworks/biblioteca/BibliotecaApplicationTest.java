@@ -165,4 +165,17 @@ public class BibliotecaApplicationTest {
         verify(optionDisplay, times(1)).display();
         verify(library, times(1)).setUser(user);
     }
+
+    @Test
+    public void shouldChangeTheOptionsAndTheUserAndExitsFromWhileLoopWhenILogOut() {
+        consoleInput = mock(ConsoleInput.class);
+
+        when(consoleInput.getInput()).thenReturn("5", "2", "4");
+
+        bibliotecaApplication = new BibliotecaApplication(welcomeDisplay, optionDisplay, consoleInput, guestUserInterpreter, library);
+
+        exit.expectSystemExitWithStatus(0);
+
+        bibliotecaApplication.takeUserInputAndInterpret();
+    }
 }
