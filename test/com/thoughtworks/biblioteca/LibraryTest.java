@@ -86,32 +86,32 @@ public class LibraryTest {
     }
 
     @Test
-    public void shouldReturnMeNullWhenIPassNullAsUserNameAndPasswordToLogInUserMethod() {
+    public void shouldReturnMeNullWhenIPassNullAslibraryNumberAndPasswordToLogInUserMethod() {
         assertNull(library.logInUser(null, null));
     }
 
     @Test
-    public void shouldReturnMeNullWhenIPassNullAsUserNameToLogInUserMethod() {
+    public void shouldReturnMeNullWhenIPassNullAsLibraryNumberToLogInUserMethod() {
         assertNull(library.logInUser(null, "some password"));
     }
 
     @Test
     public void shouldReturnMeNullWhenIPassNullAsPasswordToLogInUserMethod() {
-        assertNull(library.logInUser("Some username", null));
+        assertNull(library.logInUser("Some libraryNumber", null));
     }
 
     @Test
-    public void shouldReturnMeNullWhenIPassInvalidUsernameAndPasswordToLogInUserMethod() {
-        assertNull(library.logInUser("Some invalid username", "Some invalid password"));
+    public void shouldReturnMeNullWhenIPassInvalidLibraryNumberAndPasswordToLogInUserMethod() {
+        assertNull(library.logInUser("Some invalid libraryNumber", "Some invalid password"));
     }
 
     @Test
-    public void shouldReturnMeSimpleUserWhenIPassValidSimpleUserUsernameAndPasswordToLogInUserMethod() {
+    public void shouldReturnMeSimpleUserWhenIPassValidSimpleUserLibraryNumberAndPasswordToLogInUserMethod() {
         assertEquals(SimpleUser.class, library.logInUser("111-2222", "abcd").getClass());
     }
 
     @Test
-    public void shouldReturnMeLibrarianUserWhenIPassValidLibrarianUserUsernameAndPasswordToLogInUserMethod() {
+    public void shouldReturnMeLibrarianUserWhenIPassValidLibrarianUserLibraryNumberAndPasswordToLogInUserMethod() {
         assertEquals(LibrarianUser.class, library.logInUser("222-1111", "dcba").getClass());
     }
 

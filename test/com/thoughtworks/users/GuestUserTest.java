@@ -13,7 +13,7 @@ public class GuestUserTest {
     public void shouldReturnMeTrueWhenIAskLoginForGuestUser() {
         user = new GuestUser();
 
-        assertTrue(user.logIn("some username", "some password"));
+        assertTrue(user.logIn("some libraryNumber", "some password"));
     }
 
     @Test

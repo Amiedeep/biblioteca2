@@ -34,10 +34,10 @@ public class LogInPageInterpreter {
 
     private User logIn() {
         new Display("Enter Library number :").display();
-        String userName = consoleInput.getInput();
+        String libraryNumber = consoleInput.getInput();
         new Display("Enter Password :").display();
         String password = consoleInput.getInput();
-        User user = library.logInUser(userName, password);
+        User user = library.logInUser(libraryNumber, password);
         return user;
     }
 }

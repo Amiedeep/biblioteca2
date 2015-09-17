@@ -3,7 +3,7 @@ package com.thoughtworks.users;
 
 public interface User {
 
-    boolean logIn(String userName, String password);
+    boolean logIn(String libraryNumber, String password);
 
     String userInfo();
 }

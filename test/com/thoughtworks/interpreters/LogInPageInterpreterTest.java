@@ -39,8 +39,8 @@ public class LogInPageInterpreterTest {
 
     @Test
     public void shouldReturnMeNullWhenIPassOneToInterpretMethodAndGiveInvalidCredentials() {
-        when(consoleInput.getInput()).thenReturn("some invalid username", "some invalid password");
-        when(library.logInUser("some invalid username", "some invalid password")).thenReturn(null);
+        when(consoleInput.getInput()).thenReturn("some invalid libraryNumber", "some invalid password");
+        when(library.logInUser("some invalid libraryNumber", "some invalid password")).thenReturn(null);
 
         assertNull(logInPageInterpreter.interpret("1"));
         assertEquals("Enter Library number :\n" + "Enter Password :\n", outputStream.toString());

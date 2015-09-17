@@ -17,12 +17,12 @@ public class SimpleUserTest {
     }
 
     @Test
-    public void shouldReturnMeFalseWhenUserNameAndPasswordAreNull() {
+    public void shouldReturnMeFalseWhenLibraryNumberAndPasswordAreNull() {
         assertFalse(user.logIn(null, null));
     }
 
     @Test
-    public void shouldReturnMeFalseWhenUserNameIsNull() {
+    public void shouldReturnMeFalseWhenLibraryNumberIsNull() {
         assertFalse(user.logIn(null, "something"));
     }
 
@@ -32,12 +32,12 @@ public class SimpleUserTest {
     }
 
     @Test
-    public void shouldReturnMeTrueWhenUserNameAndPasswordMatch() {
+    public void shouldReturnMeTrueWhenLibraryNumberAndPasswordMatch() {
         assertTrue(user.logIn("111-2222", "abcd"));
     }
 
     @Test
-    public void shouldReturnMeFalseWhenUserNameAndPasswordAreInvalid() {
+    public void shouldReturnMeFalseWhenLibraryNumberAndPasswordAreInvalid() {
         assertFalse(user.logIn("111-3333", "acd"));
     }
 

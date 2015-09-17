@@ -108,9 +108,9 @@ public class Library {
         checkedOutMovies.add(movie);
     }
 
-    public User logInUser(String userName, String password) {
+    public User logInUser(String libraryNumber, String password) {
         for(User user : listOfUsers) {
-            if(user.logIn(userName, password)) {
+            if(user.logIn(libraryNumber, password)) {
                 return user;
             }
         }
