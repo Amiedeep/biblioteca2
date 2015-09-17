@@ -90,4 +90,11 @@ public class LibrarianUserInterpreterTest {
 
         assertEquals(InvalidOperation.class, librarianUserInterpreter.interpret("abc").getClass());
     }
+
+    @Test
+    public void shouldReturnUserInfoOperationWhenIPassNineToInterpretMethod() {
+        librarianUserInterpreter = new LibrarianUserInterpreter(library, consoleInput);
+
+        assertEquals(UserInfoOperation.class, librarianUserInterpreter.interpret("9").getClass());
+    }
 }

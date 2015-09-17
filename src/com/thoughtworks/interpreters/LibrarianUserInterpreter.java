@@ -32,6 +32,8 @@ public class LibrarianUserInterpreter implements Interpreter {
                 return new ExitOperation();
             case "8":
                 return new LogOutOperation();
+            case "9":
+                return new UserInfoOperation(library);
             default:
                 return new InvalidOperation();
         }
