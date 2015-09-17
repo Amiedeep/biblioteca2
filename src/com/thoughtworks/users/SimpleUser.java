@@ -31,4 +31,9 @@ public class SimpleUser implements User {
     public String userInfoToDisplay() {
         return String.format("%-40s %-40s %-40s %-40s\n", libraryNumber, name, email, phoneNumber);
     }
+
+    @Override
+    public String getUserHeaders() {
+        return String.format("%-40s %-40s %-40s %-40s\n", "library Number", "name", "email", "phoneNumber");
+    }
 }

@@ -27,4 +27,10 @@ public class GuestUserTest {
         user = new GuestUser();
         assertEquals(null, user.userInfoToDisplay());
     }
+
+    @Test
+    public void shouldReturnMeUserHeadersWhenICallGetUserHeadersMethod() {
+        user = new GuestUser();
+        assertEquals(null, user.getUserHeaders());
+    }
 }

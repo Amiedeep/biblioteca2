@@ -8,4 +8,6 @@ public interface User {
     String userInfo();
 
     String userInfoToDisplay();
+
+    String getUserHeaders();
 }

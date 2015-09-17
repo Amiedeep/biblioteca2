@@ -48,7 +48,13 @@ public class SimpleUserTest {
 
     @Test
     public void shouldReturnMeUserInfoForDisplayingWhenICallUserInfoToDisplayMethod() {
-        String expected = "111-2222                                 Amie Deep                                Aman@pathashala.com                      523743276527                            \n";
+        String expected = String.format("%-40s %-40s %-40s %-40s\n", "111-2222", "Amie Deep", "Aman@pathashala.com", "523743276527");
         assertEquals(expected, user.userInfoToDisplay());
+    }
+
+    @Test
+    public void shouldReturnMeUserHeadersWhenICallGetUserHeadersMethod() {
+        String expected = String.format("%-40s %-40s %-40s %-40s\n", "library Number", "name", "email", "phoneNumber");
+        assertEquals(expected, user.getUserHeaders());
     }
 }

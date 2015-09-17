@@ -1,7 +1,7 @@
 //When Customer chooses proceed as guest this user is selected.
 package com.thoughtworks.users;
 
-public class GuestUser implements User{
+public class GuestUser implements User {
 
     @Override
     public boolean logIn(String thatlibraryNumber, String thatPassword) {
@@ -15,6 +15,11 @@ public class GuestUser implements User{
 
     @Override
     public String userInfoToDisplay() {
+        return null;
+    }
+
+    @Override
+    public String getUserHeaders() {
         return null;
     }
 }
