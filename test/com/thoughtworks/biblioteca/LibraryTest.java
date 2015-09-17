@@ -122,14 +122,14 @@ public class LibraryTest {
 
     @Test
     public void shouldReturnMeBookStatusInOneLineWhenThereIsOneBookCheckedOutAndICallCheckedOutBooksStatusMethod() {
-        library = new Library(new SimpleUser("some user", "some password"));
+        library = new Library(new SimpleUser("some user", "some password", "Amie Deep", "Aman@pathashala.com", 523743276527l));
         library.checkOutBook("scjp");
         assertEquals("scjp authored by kathy sierra published on 1990 is checked out by some user\n", library.checkedOutBooksStatus());
     }
 
     @Test
     public void shouldReturnMeBookStatusInDifferentLineWhenThereIsMoreThanOneBookCheckedOutAndICallCheckedOutBooksStatusMethod() {
-        library = new Library(new SimpleUser("some user", "some password"));
+        library = new Library(new SimpleUser("some user", "some password", "Amie Deep", "Aman@pathashala.com", 523743276527l));
         library.checkOutBook("scjp");
         library.checkOutBook("head first java");
         String expected = "scjp authored by kathy sierra published on 1990 is checked out by some user\n" +

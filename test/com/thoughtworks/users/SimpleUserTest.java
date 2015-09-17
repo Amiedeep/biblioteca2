@@ -13,7 +13,7 @@ public class SimpleUserTest {
 
     @Before
     public void setUp() {
-        user = new SimpleUser("111-2222", "abcd");
+        user = new SimpleUser("111-2222", "abcd", "Amie Deep", "Aman@pathashala.com", 523743276527l);
     }
 
     @Test
@@ -44,5 +44,11 @@ public class SimpleUserTest {
     @Test
     public void shouldReturnMeUserInfoWhenICallUserInfoMethod() {
         assertEquals("111-2222", user.userInfo());
+    }
+
+    @Test
+    public void shouldReturnMeUserInfoForDisplayingWhenICallUserInfoToDisplayMethod() {
+        String expected = "111-2222                                 Amie Deep                                Aman@pathashala.com                      523743276527                            \n";
+        assertEquals(expected, user.userInfoToDisplay());
     }
 }

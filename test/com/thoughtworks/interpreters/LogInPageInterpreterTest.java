@@ -49,7 +49,7 @@ public class LogInPageInterpreterTest {
     @Test
     public void shouldReturnMeSimpleUserWhenIPassOneToInterpretMethodAndGiveValidSimpleUserCredentials() {
         when(consoleInput.getInput()).thenReturn("111-2222", "abcd");
-        when(library.logInUser("111-2222", "abcd")).thenReturn(new SimpleUser("111-2222", "abcd"));
+        when(library.logInUser("111-2222", "abcd")).thenReturn(new SimpleUser("111-2222", "abcd", "Amie Deep", "Aman@pathashala.com", 523743276527l));
 
         assertEquals(logInPageInterpreter.interpret("1").getClass(), SimpleUser.class);
         assertEquals("Enter Library number :\n" + "Enter Password :\n", outputStream.toString());
@@ -58,7 +58,7 @@ public class LogInPageInterpreterTest {
     @Test
     public void shouldReturnMeLibrarianUserWhenIPassOneToInterpretMethodAndGiveValidLibrarianUserCredentials() {
         when(consoleInput.getInput()).thenReturn("222-3333", "abcd");
-        when(library.logInUser("222-3333", "abcd")).thenReturn(new LibrarianUser("222-3333", "abcd"));
+        when(library.logInUser("222-3333", "abcd")).thenReturn(new LibrarianUser("222-3333", "abcd", "Amie Deep", "Aman@pathashala.com", 523743276527l));
 
         assertEquals(logInPageInterpreter.interpret("1").getClass(), LibrarianUser.class);
         assertEquals("Enter Library number :\n" + "Enter Password :\n", outputStream.toString());

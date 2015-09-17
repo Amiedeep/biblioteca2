@@ -6,4 +6,6 @@ public interface User {
     boolean logIn(String libraryNumber, String password);
 
     String userInfo();
+
+    String userInfoToDisplay();
 }

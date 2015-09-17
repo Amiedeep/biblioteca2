@@ -21,4 +21,10 @@ public class GuestUserTest {
         user = new GuestUser();
         assertEquals(null, user.userInfo());
     }
+
+    @Test
+    public void shouldReturnMeUserInfoForDisplayingWhenICallUserInfoToDisplayMethod() {
+        user = new GuestUser();
+        assertEquals(null, user.userInfoToDisplay());
+    }
 }

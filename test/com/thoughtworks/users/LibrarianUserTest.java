@@ -13,7 +13,7 @@ public class LibrarianUserTest {
 
     @Before
     public void setUp() {
-        user = new LibrarianUser("222-1111", "dcba");
+        user = new LibrarianUser("222-1111", "dcba", "Amie Deep", "Aman@pathashala.com", 523743276527l);
     }
 
     @Test
@@ -44,5 +44,11 @@ public class LibrarianUserTest {
     @Test
     public void shouldReturnMeUserInfoWhenICallUserInfoMethod() {
         assertEquals("222-1111", user.userInfo());
+    }
+
+    @Test
+    public void shouldReturnMeUserInfoForDisplayingWhenICallUserInfoToDisplayMethod() {
+        String expected = "222-1111                                 Amie Deep                                Aman@pathashala.com                      523743276527                            \n";
+        assertEquals(expected, user.userInfoToDisplay());
     }
 }

@@ -99,7 +99,7 @@ public class BibliotecaApplicationTest {
         consoleInput = mock(ConsoleInput.class);
         optionDisplay = mock(Display.class);
         library = mock(Library.class);
-        User user = new SimpleUser("some dummy user", "some dummy password");
+        User user = new SimpleUser("some dummy user", "some dummy password", "Amie Deep", "Aman@pathashala.com", 523743276527l);
 
         when(consoleInput.getInput()).thenReturn("1", "1");
         when(logInPageInterpreter.interpret("1")).thenReturn(null, user);
@@ -135,7 +135,7 @@ public class BibliotecaApplicationTest {
         consoleInput = mock(ConsoleInput.class);
         optionDisplay = mock(Display.class);
         library = mock(Library.class);
-        User user = new LibrarianUser("some libraryNumber", "some password");
+        User user = new LibrarianUser("some libraryNumber", "some password", "Amie Deep", "Aman@pathashala.com", 523743276527l);
 
         when(consoleInput.getInput()).thenReturn("1");
         when(logInPageInterpreter.interpret("1")).thenReturn(user);
@@ -153,7 +153,7 @@ public class BibliotecaApplicationTest {
         consoleInput = mock(ConsoleInput.class);
         optionDisplay = mock(Display.class);
         library = mock(Library.class);
-        User user = new SimpleUser("some libraryNumber", "some password");
+        User user = new SimpleUser("some libraryNumber", "some password", "Amie Deep", "Aman@pathashala.com", 523743276527l);
 
         when(consoleInput.getInput()).thenReturn("1");
         when(logInPageInterpreter.interpret("1")).thenReturn(user);

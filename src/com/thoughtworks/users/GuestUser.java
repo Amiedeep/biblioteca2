@@ -12,4 +12,9 @@ public class GuestUser implements User{
     public String userInfo() {
         return null;
     }
+
+    @Override
+    public String userInfoToDisplay() {
+        return null;
+    }
 }
