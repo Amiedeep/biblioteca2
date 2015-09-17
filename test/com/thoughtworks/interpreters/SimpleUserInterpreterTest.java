@@ -71,10 +71,10 @@ public class SimpleUserInterpreterTest {
     }
 
     @Test
-    public void shouldReturnInvalidOperationWhenIPassEightToInterpretMethod() {
+    public void shouldReturnInvalidOperationWhenIPassFiftyToInterpretMethod() {
         simpleUserInterpreter = new SimpleUserInterpreter(library, consoleInput);
 
-        assertEquals(InvalidOperation.class, simpleUserInterpreter.interpret("8").getClass());
+        assertEquals(InvalidOperation.class, simpleUserInterpreter.interpret("50").getClass());
     }
 
     @Test
