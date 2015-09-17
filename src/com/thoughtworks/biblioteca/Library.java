@@ -124,4 +124,8 @@ public class Library {
         }
         return bookCheckOutInfo;
     }
+
+    public void setUser(User user) {
+        this.currentUser = user;
+    }
 }
