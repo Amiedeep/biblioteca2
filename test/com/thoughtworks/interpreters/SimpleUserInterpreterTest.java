@@ -83,4 +83,11 @@ public class SimpleUserInterpreterTest {
 
         assertEquals(InvalidOperation.class, simpleUserInterpreter.interpret("abc").getClass());
     }
+
+    @Test
+    public void shouldReturnUserInfoOperationWhenIPassEightToInterpretMethod() {
+        simpleUserInterpreter = new SimpleUserInterpreter(library, consoleInput);
+
+        assertEquals(UserInfoOperation.class, simpleUserInterpreter.interpret("8").getClass());
+    }
 }
