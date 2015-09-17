@@ -25,6 +25,8 @@ public class GuestUserInterpreter implements Interpreter {
                 return new CheckOutMovieOperation(library, consoleInput);
             case "4":
                 return new ExitOperation();
+            case "5":
+                return new LogOutOperation();
             default:
                 return new InvalidOperation();
         }

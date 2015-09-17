@@ -58,6 +58,13 @@ public class GuestUserInterpreterTest {
     }
 
     @Test
+    public void shouldReturnLogOutOperationWhenIPassFiveToInterpretMethod() {
+        guestUserInterpreter = new GuestUserInterpreter(library, consoleInput);
+
+        assertEquals(LogOutOperation.class, guestUserInterpreter.interpret("5").getClass());
+    }
+
+    @Test
     public void shouldReturnInvalidOperationWhenIPassEightToInterpretMethod() {
         guestUserInterpreter = new GuestUserInterpreter(library, consoleInput);
 
