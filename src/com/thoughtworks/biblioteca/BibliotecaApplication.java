@@ -17,12 +17,14 @@ public class BibliotecaApplication {
     private Display optionsDisplay;
     private ConsoleInput consoleInput;
     private Interpreter interpreter;
+    private Library library;
 
-    public BibliotecaApplication(Display welcomeDisplay, Display optionsDisplay, ConsoleInput consoleInput, GuestUserInterpreter interpreter) {
+    public BibliotecaApplication(Display welcomeDisplay, Display optionsDisplay, ConsoleInput consoleInput, GuestUserInterpreter interpreter, Library library) {
         this.welcomeDisplay = welcomeDisplay;
         this.optionsDisplay = optionsDisplay;
         this.consoleInput = consoleInput;
         this.interpreter = interpreter;
+        this.library = library;
     }
 
     public static void main(String[] args) {
@@ -33,7 +35,8 @@ public class BibliotecaApplication {
         BibliotecaApplication bibliotecaApplication = new BibliotecaApplication(new Display(welcomeMessage),
                                                                                 new Display(options.getOptions()),
                                                                                 consoleInput,
-                                                                                new GuestUserInterpreter(library, consoleInput));
+                                                                                new GuestUserInterpreter(library, consoleInput),
+                                                                                library);
         bibliotecaApplication.startApplication(new LogInPageInterpreter(library, consoleInput));
         bibliotecaApplication.start();
     }
@@ -75,17 +78,17 @@ public class BibliotecaApplication {
             getLoginPageOptionAndInterpret(logInPageInterpreter);
         }
         else if(user.getClass() == GuestUser.class) {
-            Library library = new Library(user);
+            library.setUser(user);
             optionsDisplay = new Display(new GuestUserOptions().getOptions());
             interpreter = new GuestUserInterpreter(library, consoleInput);
         }
         else if(user.getClass() == LibrarianUser.class) {
-            Library library = new Library(user);
+            library.setUser(user);
             optionsDisplay = new Display(new LibrarianOptions().getOptions());
             interpreter = new LibrarianUserInterpreter(library, consoleInput);
         }
         else if(user.getClass() == SimpleUser.class) {
-            Library library = new Library(user);
+            library.setUser(user);
             optionsDisplay = new Display(new SimpleUserOptions().getOptions());
             interpreter = new SimpleUserInterpreter(library, consoleInput);
         }

@@ -7,6 +7,7 @@ import com.thoughtworks.interpreters.LogInPageInterpreter;
 import com.thoughtworks.users.GuestUser;
 import com.thoughtworks.users.LibrarianUser;
 import com.thoughtworks.users.SimpleUser;
+import com.thoughtworks.users.User;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -23,6 +24,7 @@ public class BibliotecaApplicationTest {
     private ConsoleInput consoleInput;
     private GuestUserInterpreter guestUserInterpreter;
     private LogInPageInterpreter logInPageInterpreter;
+    private Library library;
 
     @Rule
     public ExpectedSystemExit exit = ExpectedSystemExit.none();
@@ -32,14 +34,15 @@ public class BibliotecaApplicationTest {
         welcomeDisplay = new Display("welcome display");
         optionDisplay = new Display("Display display");
         consoleInput = new ConsoleInput(new Scanner(System.in));
-        guestUserInterpreter = new GuestUserInterpreter(new Library(new GuestUser()), consoleInput);
+        library = new Library(new GuestUser());
+        guestUserInterpreter = new GuestUserInterpreter(library, consoleInput);
         logInPageInterpreter = mock(LogInPageInterpreter.class);
     }
 
     @Test
     public void shouldCallDisplayMethodOfOptionsDisplayObjectWhenICallPrintMenuOptions() {
         optionDisplay = mock(Display.class);
-        bibliotecaApplication = new BibliotecaApplication(welcomeDisplay, optionDisplay, consoleInput, guestUserInterpreter);
+        bibliotecaApplication = new BibliotecaApplication(welcomeDisplay, optionDisplay, consoleInput, guestUserInterpreter, library);
 
         bibliotecaApplication.printMenuOptions();
 
@@ -49,7 +52,7 @@ public class BibliotecaApplicationTest {
     @Test
     public void shouldCallDisplayMethodOfWelcomeDisplayObjectWhenICallPrintWelcomeMessage() {
         welcomeDisplay = mock(Display.class);
-        bibliotecaApplication = new BibliotecaApplication(welcomeDisplay, optionDisplay, consoleInput, guestUserInterpreter);
+        bibliotecaApplication = new BibliotecaApplication(welcomeDisplay, optionDisplay, consoleInput, guestUserInterpreter, library);
 
         bibliotecaApplication.printWelcomeMessage();
 
@@ -60,7 +63,7 @@ public class BibliotecaApplicationTest {
     public void shouldTakeTheUserInputAndPerformOperationWhenICallTakeUserInputAndInterpretMethod() {
         consoleInput = mock(ConsoleInput.class);
         guestUserInterpreter = mock(GuestUserInterpreter.class);
-        bibliotecaApplication = new BibliotecaApplication(welcomeDisplay, optionDisplay, consoleInput, guestUserInterpreter);
+        bibliotecaApplication = new BibliotecaApplication(welcomeDisplay, optionDisplay, consoleInput, guestUserInterpreter, library);
 
         when(consoleInput.getInput()).thenReturn("1", "4");
         when(guestUserInterpreter.interpret("1")).thenReturn(new ListBooksOperation(new Library(new GuestUser())));
@@ -78,7 +81,7 @@ public class BibliotecaApplicationTest {
     public void shouldVerifyIfAllMethodsAreCalledWhenICallStartMethod() {
         consoleInput = mock(ConsoleInput.class);
         guestUserInterpreter = mock(GuestUserInterpreter.class);
-        bibliotecaApplication = new BibliotecaApplication(welcomeDisplay, optionDisplay, consoleInput, guestUserInterpreter);
+        bibliotecaApplication = new BibliotecaApplication(welcomeDisplay, optionDisplay, consoleInput, guestUserInterpreter, library);
 
         when(consoleInput.getInput()).thenReturn("4");
         when(guestUserInterpreter.interpret("4")).thenReturn(new ExitOperation());
@@ -95,59 +98,71 @@ public class BibliotecaApplicationTest {
     public void shouldPrintMeMenuOptionsAgainWhenIGetNullAsUser() {
         consoleInput = mock(ConsoleInput.class);
         optionDisplay = mock(Display.class);
+        library = mock(Library.class);
+        User user = new SimpleUser("some dummy user", "some dummy password");
 
         when(consoleInput.getInput()).thenReturn("1", "1");
-        when(logInPageInterpreter.interpret("1")).thenReturn(null, new SimpleUser("some dummy user", "some dummy password"));
+        when(logInPageInterpreter.interpret("1")).thenReturn(null, user);
 
-        bibliotecaApplication = new BibliotecaApplication(welcomeDisplay, optionDisplay, consoleInput, guestUserInterpreter);
+        bibliotecaApplication = new BibliotecaApplication(welcomeDisplay, optionDisplay, consoleInput, guestUserInterpreter, library);
 
         bibliotecaApplication.startApplication(logInPageInterpreter);
 
         verify(optionDisplay, times(2)).display();
+        verify(library, times(1)).setUser(user);
     }
 
     @Test
     public void shouldSetTheInterpreterAsGuestUserInterpreterWhenIGetGuestUserFromInterpretMethod() {
         consoleInput = mock(ConsoleInput.class);
         optionDisplay = mock(Display.class);
+        library = mock(Library.class);
+        User user = new GuestUser();
 
         when(consoleInput.getInput()).thenReturn("2");
-        when(logInPageInterpreter.interpret("2")).thenReturn(new GuestUser());
+        when(logInPageInterpreter.interpret("2")).thenReturn(user);
 
-        bibliotecaApplication = new BibliotecaApplication(welcomeDisplay, optionDisplay, consoleInput, guestUserInterpreter);
+        bibliotecaApplication = new BibliotecaApplication(welcomeDisplay, optionDisplay, consoleInput, guestUserInterpreter, library);
 
         bibliotecaApplication.startApplication(logInPageInterpreter);
 
         verify(optionDisplay, times(1)).display();
+        verify(library, times(1)).setUser(user);
     }
 
     @Test
     public void shouldSetTheInterpreterAsLibrarianUserInterpreterWhenIGetLibrarianUserFromInterpretMethod() {
         consoleInput = mock(ConsoleInput.class);
         optionDisplay = mock(Display.class);
+        library = mock(Library.class);
+        User user = new LibrarianUser("some username", "some password");
 
         when(consoleInput.getInput()).thenReturn("1");
-        when(logInPageInterpreter.interpret("1")).thenReturn(new LibrarianUser("some username", "some password"));
+        when(logInPageInterpreter.interpret("1")).thenReturn(user);
 
-        bibliotecaApplication = new BibliotecaApplication(welcomeDisplay, optionDisplay, consoleInput, guestUserInterpreter);
+        bibliotecaApplication = new BibliotecaApplication(welcomeDisplay, optionDisplay, consoleInput, guestUserInterpreter, library);
 
         bibliotecaApplication.startApplication(logInPageInterpreter);
 
         verify(optionDisplay, times(1)).display();
+        verify(library, times(1)).setUser(user);
     }
 
     @Test
     public void shouldSetTheInterpreterAsSimpleUserInterpreterWhenIGetSimpleUserFromInterpretMethod() {
         consoleInput = mock(ConsoleInput.class);
         optionDisplay = mock(Display.class);
+        library = mock(Library.class);
+        User user = new SimpleUser("some username", "some password");
 
         when(consoleInput.getInput()).thenReturn("1");
-        when(logInPageInterpreter.interpret("1")).thenReturn(new SimpleUser("some username", "some password"));
+        when(logInPageInterpreter.interpret("1")).thenReturn(user);
 
-        bibliotecaApplication = new BibliotecaApplication(welcomeDisplay, optionDisplay, consoleInput, guestUserInterpreter);
+        bibliotecaApplication = new BibliotecaApplication(welcomeDisplay, optionDisplay, consoleInput, guestUserInterpreter, library);
 
         bibliotecaApplication.startApplication(logInPageInterpreter);
 
         verify(optionDisplay, times(1)).display();
+        verify(library, times(1)).setUser(user);
     }
 }
