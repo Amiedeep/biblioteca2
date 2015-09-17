@@ -30,6 +30,8 @@ public class LibrarianUserInterpreter implements Interpreter {
                 return new CheckedOutBooksStatusOperation(library);
             case "7":
                 return new ExitOperation();
+            case "8":
+                return new LogOutOperation();
             default:
                 return new InvalidOperation();
         }

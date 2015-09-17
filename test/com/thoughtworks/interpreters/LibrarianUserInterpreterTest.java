@@ -71,10 +71,17 @@ public class LibrarianUserInterpreterTest {
     }
 
     @Test
-    public void shouldReturnInvalidOperationWhenIPassEightToInterpretMethod() {
+    public void shouldReturnLogOutOperationWhenIPassEightToInterpretMethod() {
         librarianUserInterpreter = new LibrarianUserInterpreter(library, consoleInput);
 
-        assertEquals(InvalidOperation.class, librarianUserInterpreter.interpret("8").getClass());
+        assertEquals(LogOutOperation.class, librarianUserInterpreter.interpret("8").getClass());
+    }
+
+    @Test
+    public void shouldReturnInvalidOperationWhenIPassFiftyToInterpretMethod() {
+        librarianUserInterpreter = new LibrarianUserInterpreter(library, consoleInput);
+
+        assertEquals(InvalidOperation.class, librarianUserInterpreter.interpret("50").getClass());
     }
 
     @Test
