@@ -64,6 +64,13 @@ public class SimpleUserInterpreterTest {
     }
 
     @Test
+    public void shouldReturnLogOutOperationWhenIPassSevenToInterpretMethod() {
+        simpleUserInterpreter = new SimpleUserInterpreter(library, consoleInput);
+
+        assertEquals(LogOutOperation.class, simpleUserInterpreter.interpret("7").getClass());
+    }
+
+    @Test
     public void shouldReturnInvalidOperationWhenIPassEightToInterpretMethod() {
         simpleUserInterpreter = new SimpleUserInterpreter(library, consoleInput);
 

@@ -29,6 +29,8 @@ public class SimpleUserInterpreter implements Interpreter {
                 return new ListMoviesOperation(library);
             case "6":
                 return new CheckOutMovieOperation(library, consoleInput);
+            case "7":
+                return new LogOutOperation();
             default:
                 return new InvalidOperation();
         }
