@@ -43,7 +43,7 @@ public class LibrarianUserTest {
 
     @Test
     public void shouldReturnMeUserInfoWhenICallUserInfoMethod() {
-        assertEquals("222-1111", user.userInfo());
+        assertEquals("222-1111 with name Amie Deep", user.userInfo());
     }
 
     @Test

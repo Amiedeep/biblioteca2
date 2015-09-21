@@ -24,7 +24,7 @@ public class LibrarianUser implements User {
 
     @Override
     public String userInfo() {
-        return libraryNumber;
+        return libraryNumber + " with name " + name;
     }
 
     @Override
