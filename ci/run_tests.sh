@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
-apt-get install ant
+apt-get install -y ant
 ant runjUnit
